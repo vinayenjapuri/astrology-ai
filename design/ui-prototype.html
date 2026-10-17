@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="mr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Shubh Vastu AI Astro — UI Design</title><style>
+/* Google Material Symbols Rounded subset, embedded for offline use.
+   Copyright Google LLC; Apache 2.0, see GOOGLE-ICONS-LICENSE.txt. */
+@font-face{font-family:'Material Symbols Rounded';font-style:normal;font-weight:400;src:url(data:font/ttf;base64,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AEwAOgAWAAIAEgAGAAEABQAiABEAIAAhAAIACAATABgAFQAUACMAGwAVAAEABAADAAYAFQAUABUAFQAcAAIAEgAGAAUABQAYAB4AHQAVAAUACQAYAB4AHQAVACYAEQAbACIAAQAEAAoABAAVAB0AIwABAAQADAAEAB4AHAAVAAEABAAPAAcAGQARABwAHgAdABQAAQAEAAUABAARABsAGwACAA4ABgALAAMAFAAUAAYABAAfAB8AIQABAAgAEQATABQAGAAcAB8AIAAhAAEABAAAAAgAAQD0AAUAngBkAEgALAAQAAEABAACAAsAEQAiABMAGAAmABsAEQAiABUAIAABAAQABQALAB4AEwARABsAJgAfABgAHgAdABUAAQAEAAwACwAeABwAFQAmABYAGQAbABsAFQAUAAIAHgAGAAQACwAYABEAIgAmABIAIwASABIAGwAVAAMADQARACAAFAAmABcAGQAWACIAEwARACAAFAADADoAIAAIAAIACwATABMAFQAhACEAJgAiABkAHAAVAA0ADAAjACIAHgAmABEAJAAVACEAHgAcABUACQANACAAIAAeACQAJgAWAB4AIAAkABEAIAAUAAEABQARABMAGAAbACQAAQAEAAAACAABAFwAAgAyAAoAAQAEAA4AEQAeACAAGgAhAB8AEQATABUAJgAfACAAFQAcABkAIwAcAAEABAACABIAEwATABUAIQAhACYAIgAZABwAFQAmABYAGQAbABsAFQAUAAEAAgARACQAAQAEAAAACAABAKoAAgB+AAoAAgA8AAYABwAaABUAJQASAB4AEQAgABQAJgAUAB4AIwASABsAFQAmABEAIAAgAB4AJAAmABsAFQAWACIACAAbABUAJQASAB4AEQAgABQAJgAUAB4AIwASABsAFQAmABEAIAAgAB4AJAAmACAAGQAXABgAIgABAAQABAATABgAEQAiACYAEgAjABIAEgAbABUAJgAeACMAIgAbABkAHQAVAAEAAgATABoABQDIAAAC+APAAAMABgAJAAwADwAAMxEhESUTAwERAwMhAzUTIcgCMP4gsrIBkLLIAWSysP6gA8D8QHwBZAFm/TYCyv6c/m4BZFoBYgAABABQAFADcANwABgALAA4AEQAAAEXFjYnJzc2JiMjJyYiBwcjIgYXFwcGFjcXIi4CNTQ+AjMyHgIV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) format('truetype');font-display:block}
+.symbol{font-family:'Material Symbols Rounded';font-weight:400;font-style:normal;font-size:22px;line-height:1;letter-spacing:normal;text-transform:none;white-space:nowrap;word-wrap:normal;direction:ltr;font-feature-settings:'liga';-webkit-font-smoothing:antialiased;display:inline-block}
+
+/* ConfigProvider-ready foundations: colors, spacing, type and control geometry. */
+:root{--navy:#122440;--brand:#2457d6;--teal:#168a9c;--accent:#126b78;--paper:#f4f7fb;--white:#fff;--soft:#eaf0ff;--line:#dce4ef;--ink:#17263d;--muted:#52647b;--danger:#b42318;--action:#292D32;--action-hover:#15181C;--card-border:#E2E6EB;--card-shadow:0 4px 18px rgba(23,38,61,.035);--radius:16px;--space:8px;--control:44px;--sidebar:240px}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.6 system-ui,-apple-system,'Noto Sans Devanagari','Nirmala UI',sans-serif}
+button,input,select,textarea{font:inherit}
+button,a{cursor:pointer}
+button{color:inherit;border:0}
+button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+button:disabled{cursor:not-allowed}
+button:disabled,input:disabled{background:#edf1f6!important;color:var(--muted)!important;border-color:var(--line)!important}
+h1,h2,h3,p{margin:0}
+h1{font-size:30px;line-height:1.35;letter-spacing:-.6px;font-weight:650;margin-bottom:10px}
+h2{font-size:20px;line-height:1.5;font-weight:650;margin-bottom:12px}
+h3{font-size:16px;font-weight:650;margin-bottom:6px}
+p{margin-bottom:14px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.eyebrow{font-size:11px;letter-spacing:1.3px;font-weight:700;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip-link{position:fixed;top:-80px;left:16px;z-index:20;padding:12px;background:white;color:var(--brand)}
+.skip-link:focus{top:12px}
+
+/* AppShell / AppSidebar / AppHeader */
+aside{position:fixed;inset:0 auto 0 0;width:var(--sidebar);padding:28px 16px 20px;background:var(--navy);color:white;display:flex;flex-direction:column;z-index:4;overflow:auto}
+.brand{display:flex;align-items:center;gap:10px}
+.mark{width:38px;height:38px;flex-shrink:0;color:var(--brand)}
+aside .mark{color:#78ded0}
+.brand strong{display:block;font-size:20px;font-weight:700;letter-spacing:-.6px;line-height:1.3}
+.brand small{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+aside .brand{padding:0 8px}
+aside .brand small,aside .aside-bottom{color:#b9c9dd}
+#side-nav{display:grid;gap:4px;margin-top:32px}
+#side-nav button{display:flex;align-items:center;gap:12px;min-height:44px;background:transparent;color:#c6d3e4;border-radius:6px;text-align:left;padding:10px 12px;border-left:3px solid transparent}
+#side-nav button:hover{background:#1c3555}
+#side-nav button.active{color:white;background:#23415f;border-left-color:#78ded0;font-weight:600}
+.ico{display:inline-grid;place-items:center;width:22px;flex-shrink:0;font-size:20px}
+.aside-bottom{margin-top:auto;padding:40px 10px 0;font-size:12px}
+.aside-bottom strong{display:block;color:white;font-size:13px}
+.divider{height:1px;background:var(--line);margin:22px 0}
+aside .divider{background:#344760}
+main{margin-left:var(--sidebar);min-width:0}
+header{min-height:72px;padding:12px 36px;background:white;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.breadcrumb{font-size:12px;color:var(--muted)}
+.right{display:flex;align-items:center;gap:16px}
+.lang{min-height:44px;border:1px solid var(--line);border-radius:6px;padding:8px 10px;background:white;color:var(--ink)}
+.avatar{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;color:var(--muted)}
+.preview-label{font-size:11px;color:var(--muted)}
+.mobile-brand,.bottom-nav{display:none}
+.content{max-width:1240px;margin:auto;padding:28px 36px 48px}
+.page-heading{margin-bottom:24px}
+.page-heading p:last-child{margin:0}
+
+/* Shared controls and surfaces */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:var(--control);padding:10px 18px;border:1px solid var(--action);border-radius:9px;background:var(--action);color:white;font-size:14px;line-height:1.5;font-weight:600;text-decoration:none;transition:background .18s,border-color .18s,box-shadow .18s}
+.btn:hover:not(:disabled){background:var(--action-hover);border-color:var(--action-hover)}
+.btn.secondary{background:white;color:var(--action);border-color:#D6DAE0}
+.btn.secondary:hover:not(:disabled){background:#F6F7F8;border-color:#AEB5BE}
+.btn.ghost{color:var(--action);background:transparent;border-color:transparent;padding:8px}
+.btn.ghost:hover:not(:disabled){background:#ECEFF2;border-color:transparent}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.card{background:white;border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;min-width:0;box-shadow:var(--card-shadow)}
+.badge{display:inline-block;padding:3px 9px;border-radius:4px;background:var(--soft);color:#234b9d;font-size:11px;font-weight:650}
+.note,.status{padding:14px 16px;border-radius:6px;font-size:13px;line-height:1.7;margin:18px 0;background:#eef5f8;color:#244c66}
+.status{border:1px solid #bed3e1}
+.status.error{border-color:#efb7b1;background:#fff5f3;color:var(--danger)}
+footer{font-size:12px;color:var(--muted);margin-top:24px}
+.twocol{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,1fr);gap:24px;align-items:start}
+
+/* HeroSection / ServiceRow / QuotaSummary / ConsultantCard */
+.hero{position:relative;min-height:254px;background:linear-gradient(115deg,#DDE9FF 0%,#EDF4FF 52%,#FFFFFF 100%);color:var(--ink);border:1px solid #D5E1F3;border-radius:var(--radius);padding:32px;display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:28px;align-items:center;overflow:hidden}
+.hero h1{font-size:36px}
+.hero p{color:var(--muted);max-width:520px}
+.hero .eyebrow{color:var(--accent)}
+.hero .btn.secondary{background:white;color:var(--action);border-color:white}
+.hero .btn.secondary:hover{background:#F0F2F4;border-color:#F0F2F4}
+/* Shared desktop/mobile treatment: faded artwork cropped at the top-right. */
+.hero-copy{position:relative;z-index:1}
+.cosmos{width:220px;height:220px;position:absolute;right:-60px;top:-50px;opacity:.2;display:grid;place-items:center;margin:0;pointer-events:none}
+.cosmos-art{width:100%;height:100%;overflow:visible}
+@media(min-width:851px){.cosmos-art{transform:scale(1.4);transform-origin:center}}
+
+.section-top{display:flex;align-items:center;justify-content:space-between;margin:26px 0 12px}
+.section-top h2{margin:0;font-size:18px}
+.grid{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:white}
+.service{box-shadow:none;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:12px 18px;min-height:76px;display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:0 16px;align-items:center}
+.service:last-child{border-bottom:0}
+.service:hover{background:#f1f5fc}
+.service:focus-visible{outline-offset:-3px}
+.service-icon{width:40px;height:40px;display:grid;place-items:center;background:#F0F2F4;color:var(--action);border-radius:10px;font-size:22px;flex-shrink:0}
+.service .service-icon{grid-row:1/3}
+.service h3{margin:0;font-size:15px}
+.service p{grid-column:2;margin:2px 0 0;font-size:13px;color:var(--muted)}
+.service .arrow{grid-column:3;grid-row:1/3;color:var(--action);font-size:12px;font-weight:600}
+.usage{margin-top:20px;padding:24px;background:white;border:1px solid var(--card-border);border-radius:var(--radius);box-shadow:var(--card-shadow)}
+.trial-heading{display:flex;gap:12px;align-items:center;margin-bottom:20px}.trial-heading h3{margin:0;font-size:17px}.trial-heading p{margin:3px 0 0}.trial-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:#F0F2F4;color:var(--action);flex-shrink:0}
+.trial-balances{display:grid;grid-template-columns:1fr 1fr;gap:16px}.trial-balance{border:1px solid #E8EBEF;border-radius:12px;background:#FAFBFC;padding:16px 18px;min-width:0}.trial-category{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--action)}.trial-category .symbol{font-size:18px}.trial-value{display:flex;align-items:baseline;gap:12px;justify-content:space-between;margin:10px 0}.trial-value strong{font-size:28px;line-height:1.3;font-weight:650;color:var(--action);white-space:nowrap}.trial-value small{font-size:15px;font-weight:400;color:var(--muted)}.trial-value>span{color:var(--muted);font-size:12px;text-align:right}.trial-balance meter{display:block;width:100%;height:6px}.trial-balance meter::-webkit-meter-bar{background:#E6E9ED;border:0;border-radius:4px}.trial-balance meter::-webkit-meter-optimum-value{background:var(--action)}.trial-balance meter::-moz-meter-bar{background:var(--action)}.trial-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}
+.quota-metrics{display:flex;gap:28px;margin:12px 0}
+.quota-metric{min-width:100px;flex:1}
+.quota-metric strong{font-size:22px;line-height:1.2}
+.quota-metric span{display:block;color:var(--muted);font-size:12px}
+.quota-metric meter{width:100%;height:6px;display:block;margin-top:8px;accent-color:var(--teal)}
+.consult{display:flex;align-items:center;gap:16px;margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+.portrait{width:48px;height:48px;flex-shrink:0;border-radius:50%;border:1px solid var(--line);background:var(--soft);color:var(--brand);display:grid;place-items:center;font-size:18px}
+.consult p{margin:0}
+.consult .btn{margin-left:auto}
+
+/* BirthDetailsForm / VastuForm / PrashnaForm */
+.form-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.field{min-width:0}
+.field.full{grid-column:1/-1}
+label{display:block;font-weight:600;font-size:13px;margin-bottom:6px}
+input,textarea,.field select{width:100%;min-width:0;min-height:var(--control);border:1px solid #b6c4d6;border-radius:6px;padding:10px 12px;background:white;color:var(--ink)}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:1}
+textarea{min-height:110px;resize:vertical}
+.check{display:flex;align-items:flex-start;gap:10px;font-weight:400;margin:18px 0;font-size:13px;cursor:pointer}
+.check input{width:18px;min-height:18px;height:18px;flex-shrink:0;margin:2px 0;accent-color:var(--brand)}
+.field .check{margin:0;min-height:26px}
+.field-error{display:block;color:var(--danger);font-size:12px;margin-top:5px}
+[aria-invalid=true]{border-color:var(--danger)}
+.required{color:var(--danger);margin-left:3px}
+.steps{list-style:none;counter-reset:step;padding:0;margin:18px 0}
+.steps li{counter-increment:step;position:relative;padding:0 0 24px 36px;font-size:13px}
+.steps li:before{content:counter(step);position:absolute;left:0;top:0;width:24px;height:24px;background:var(--soft);color:var(--brand);display:grid;place-items:center;border-radius:50%}
+.steps li:last-child{padding-bottom:0}
+
+/* AIChatPanel / ChatMessage / ChatComposer */
+.chat{display:flex;flex-direction:column;padding:0;overflow:hidden;min-height:510px}
+.chat-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line)}
+.chat-body{padding:20px;flex:1;max-height:540px;overflow:auto;overflow-wrap:anywhere}
+.bubble{padding:16px;background:#eff3f9;border:1px solid var(--line);border-radius:2px 8px 8px 8px;max-width:94%;font-size:14px}
+.bubble.user{margin:20px 0 16px auto;background:var(--navy);color:white;border-color:var(--navy);border-radius:8px 2px 8px 8px}
+.message-label{display:block;font-size:11px;font-weight:600;margin-bottom:6px}
+.suggestions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{min-height:44px;border:1px solid var(--line);background:white;border-radius:6px;padding:9px 12px;text-align:left;color:var(--brand);font-size:12px}
+.chip:hover{background:var(--soft)}
+.chat-compose{padding:14px;border-top:1px solid var(--line);display:flex;gap:8px}
+.chat-compose input{flex:1;min-width:0}
+.composer-help{padding:0 14px 12px;font-size:12px;color:var(--muted);margin:0}
+.chat-disclaimer{margin:0;border-radius:0;border:0;border-bottom:1px solid var(--line);font-size:12px;padding:12px 20px}
+.loading{display:inline-block;width:13px;height:13px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}
+}
+
+/* PricingPlanCard / ContactProfile / Modal */
+/* PricingPlanCard: shared header, price block, benefits and anchored action. */
+.plan-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;padding-top:12px;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;padding:28px 22px 22px;transition:border-color .18s,box-shadow .18s}
+.plan:hover{border-color:#B8C0CA;box-shadow:0 8px 24px rgba(23,38,61,.065)}
+.plan.rec{border-color:var(--action);box-shadow:0 0 0 1px var(--action),0 8px 24px rgba(23,38,61,.07)}
+.plan.rec .badge{position:absolute;top:0;left:22px;transform:translateY(-50%);padding:4px 12px;border-radius:20px;background:var(--action);color:white;border:3px solid var(--paper);font-size:11px;line-height:1.4;max-width:calc(100% - 44px)}
+.plan-heading{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.plan-heading h2{font-size:17px;margin:0;letter-spacing:-.3px}
+.plan-symbol{width:32px;height:32px;display:grid;place-items:center;background:#F3F4F6;border:1px solid #E7E9ED;border-radius:9px;color:var(--action);flex-shrink:0}
+.plan-symbol svg{width:18px;height:18px}
+.plan.rec .plan-symbol{background:#E9ECEF;border-color:#D9DDE2}
+.plan-price{padding-bottom:22px;border-bottom:1px solid #ECEEF1}
+.price{font-size:40px;line-height:1.2;font-weight:650;letter-spacing:-1.7px;margin:0 0 8px;color:var(--action);font-variant-numeric:tabular-nums}
+.price .currency{font-size:26px;vertical-align:4px;margin-right:2px;font-weight:500}
+.plan ul{list-style:none;margin:20px 0 26px;padding:0;font-size:13px;display:grid;gap:14px}
+.plan li{display:flex;align-items:baseline;gap:10px;line-height:1.5}
+.plan li:before{content:'✓';color:#52647B;font-size:12px;font-weight:600;flex-shrink:0}
+.plan li.zero:before{content:'—';color:#75808D}
+.plan li strong{font-weight:650}
+.plan .btn{width:100%;margin-top:auto;padding:11px 8px;min-height:46px}
+.contact-hero{max-width:780px;margin:auto;text-align:center;padding:36px}
+.contact-hero .portrait{margin:0 auto 20px;width:72px;height:72px;font-size:25px}
+.contact-hero h1{font-size:27px}
+.contact-hero>p{max-width:530px;margin-left:auto;margin-right:auto}
+.more-links{display:grid;gap:10px}
+.more-links button{min-height:52px;padding:14px 18px;text-align:left;background:white;border:1px solid var(--line);border-radius:6px}
+dialog{width:460px;max-width:calc(100% - 32px);max-height:calc(100dvh - 32px);overflow:auto;border:1px solid var(--line);border-radius:10px;padding:28px;background:white;color:var(--ink)}
+dialog::backdrop{background:#12244099}
+dialog .btn{float:right}
+
+.quota-metric meter::-webkit-meter-bar{background:var(--soft);border:0;border-radius:3px}
+.quota-metric meter::-webkit-meter-optimum-value{background:var(--teal)}
+.quota-metric meter::-moz-meter-bar{background:var(--teal)}
+
+/* Responsive shell; content may grow naturally with translation length. */
+@media(max-width:1199px){:root{--sidebar:210px}
+.content{padding:24px}
+header{padding:12px 24px}
+.hero{grid-template-columns:minmax(0,1fr) 160px;padding:28px}
+.plan-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.twocol{grid-template-columns:1fr}
+.preview-label{display:none}
+}
+
+@media(max-width:850px){:root{--sidebar:190px}
+aside{padding:24px 10px}
+.brand strong{font-size:18px}
+.hero{display:block;position:relative}
+.hero h1{font-size:30px}
+.service .arrow{font-size:0}
+.service .arrow:after{content:'→';font-size:18px}
+
+.form-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:700px){aside{display:none}
+main{margin:0}
+header{padding:10px 16px;min-height:66px}
+.breadcrumb,.avatar{display:none}
+.mobile-brand{display:flex}
+.mobile-brand .mark{width:30px;height:30px}
+.mobile-brand strong{font-size:17px}
+.mobile-brand small{font-size:9px}
+.right{gap:8px}
+.lang{font-size:13px;max-width:104px}
+.content{padding:20px 16px calc(104px + env(safe-area-inset-bottom))}
+h1{font-size:26px}
+h2{font-size:19px}
+.hero{padding:24px}
+.hero h1{font-size:29px}
+.hero .actions{gap:10px}
+.hero .btn{font-size:13px;padding:10px 14px}
+.service{padding:12px;grid-template-columns:36px minmax(0,1fr) 16px;gap:0 12px}
+.service-icon{width:36px;height:36px}
+.service h3{font-size:14px}
+.service p{font-size:12px}
+.section-top h2{font-size:17px}
+.usage{padding:18px}.trial-balances{gap:10px}.trial-balance{padding:14px 12px}.trial-value{display:block}.trial-value>span{display:block;text-align:left;margin-top:4px}.trial-footer{align-items:flex-start;flex-wrap:wrap}.trial-footer .btn{margin-left:auto}
+.quota-metrics{gap:20px}
+.consult{flex-wrap:wrap;gap:12px}
+.consult>div:nth-child(2){flex:1;min-width:200px}
+.consult .btn{margin-left:60px}
+.card{padding:18px}
+.chat{padding:0;min-height:470px}
+.chat-body{padding:16px}
+.chat-head{padding:14px 16px}
+.chat-compose .btn{padding:10px 12px}
+.form-grid{grid-template-columns:1fr}
+.plan-grid{grid-template-columns:1fr}
+.plan{padding:26px 24px 24px}
+.plan ul{grid-template-columns:1fr;gap:13px}.plan-grid{gap:24px}.plan-heading{margin-bottom:18px}
+.bottom-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid var(--line);padding:6px 4px max(8px,env(safe-area-inset-bottom));z-index:5;margin:0}
+.bottom-nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;background:transparent;min-height:50px;padding:4px 2px;color:var(--muted);font-size:10px;border-radius:4px;overflow-wrap:anywhere}
+.bottom-nav button.active{background:#EFF1F3;color:var(--action);font-weight:650}
+.bottom-nav .ico{font-size:21px}
+.contact-hero h1{font-size:24px}
+.contact-hero .actions{flex-direction:column}
+.page-heading{margin-bottom:20px}
+}
+
+/* White left-hand rail; labels fade as the drawer smoothly expands. */
+.nav-toggle{display:none}
+@media(min-width:701px){
+ body:not(.guru-mode) main{margin-left:76px;margin-right:0}
+ #app-sidebar{inset:0 auto 0 0;width:76px;padding:24px 10px 16px;background:white;color:var(--action);border-right:1px solid var(--line);overflow-x:hidden;transition:width .28s cubic-bezier(.22,1,.36,1),box-shadow .28s ease}
+ #app-sidebar .brand{justify-content:flex-start;gap:12px;padding:0 12px;flex-shrink:0}
+ #app-sidebar .mark{color:var(--action);width:32px;height:32px}
+ #app-sidebar .brand>div,#app-sidebar .nav-label{display:block;opacity:0;max-width:0;overflow:hidden;white-space:nowrap;transition:opacity .18s ease,max-width .28s cubic-bezier(.22,1,.36,1)}
+ #app-sidebar .brand>div{flex-shrink:0}
+ #app-sidebar .aside-bottom{margin-top:auto;max-height:0;opacity:0;overflow:hidden;padding:0 10px;transition:opacity .18s ease,max-height .28s ease,padding .28s ease;flex-shrink:0}
+ #app-sidebar .nav-toggle{display:flex;align-items:center;justify-content:flex-start;gap:12px;width:100%;min-height:44px;flex-shrink:0;margin-top:16px;padding:10px 16px;background:white;border:1px solid var(--line);border-radius:8px;color:var(--action);font-size:13px;text-align:left;overflow:hidden}
+ #app-sidebar .toggle-arrow{display:block;flex:0 0 22px;font-size:20px;line-height:22px;transition:transform .28s cubic-bezier(.22,1,.36,1)}
+ #app-sidebar .nav-toggle:hover{background:#F3F4F5}
+ #side-nav{margin-top:28px;margin-bottom:24px;gap:8px;flex-shrink:0}
+ #side-nav button{min-height:48px;justify-content:flex-start;gap:14px;padding:12px 16px;border:0;background:white;color:var(--action);border-radius:9px;overflow:hidden}
+ #side-nav button:hover{background:#F1F2F4}
+ #side-nav button.active,#side-nav button.active:hover{background:var(--action);color:white}
+ body.nav-expanded #app-sidebar{width:260px;box-shadow:8px 0 24px #17263D0A}
+ body.nav-expanded #app-sidebar .brand>div,body.nav-expanded #app-sidebar .nav-label{max-width:210px;opacity:1}
+ body.nav-expanded #app-sidebar .aside-bottom{max-height:240px;opacity:1;padding:24px 10px 0}
+ body.nav-expanded #app-sidebar .toggle-arrow{transform:rotate(180deg)}
+ #app-sidebar .brand small,#app-sidebar .aside-bottom{color:var(--muted)}
+ #app-sidebar .aside-bottom strong{color:var(--action)}
+ #app-sidebar .divider{background:var(--line)}
+}
+.bottom-nav button{color:var(--action)}
+.bottom-nav button.active{background:var(--action);color:white}
+/* Persistent assistant entry point, above mobile navigation and safe areas. */
+.guru-fab{position:fixed;right:24px;bottom:24px;z-index:6;display:flex;align-items:center;gap:0;min-height:56px;padding:7px;border:1px solid #D7DFEA;border-radius:30px;background:linear-gradient(90deg,#48ADD6,#58D9BB,#49E296);background:linear-gradient(90deg in oklch, oklch(70.47% 0.1474 234.14) 0.0%, oklch(77.17% 0.1350 218.29) 25.0%, oklch(87.01% 0.1488 182.36) 50.0%, oklch(89.37% 0.1721 164.40) 75.0%, oklch(86.61% 0.2012 155.94) 100.0%);color:#17263D;font-weight:700;font-size:14px;box-shadow:0 5px 20px #12244024;transition:box-shadow .2s,transform .2s}
+.guru-fab-icon{display:grid;place-items:center;flex-shrink:0;width:40px;height:40px;border-radius:50%;background:transparent;color:var(--navy);font-size:24px}
+#guru-fab-label{max-width:0;opacity:0;overflow:hidden;white-space:nowrap;transition:max-width .25s ease,opacity .2s ease,margin .25s ease;margin:0}
+.guru-fab:hover #guru-fab-label,.guru-fab:focus-visible #guru-fab-label{max-width:180px;opacity:1;margin:0 12px 0 8px}
+.guru-fab:hover{transform:translateY(-2px);box-shadow:0 8px 24px #12244030}
+body.guru-mode .guru-fab{display:none}
+body:not(.guru-mode) .content{padding-bottom:110px}
+@media(max-width:700px){.guru-fab{right:16px;bottom:calc(86px + env(safe-area-inset-bottom));min-height:52px;padding:6px;font-size:13px}.guru-fab-icon{width:38px;height:38px}body:not(.guru-mode) .content{padding-bottom:calc(180px + env(safe-area-inset-bottom))}}
+/* AI Guruji focus mode: full viewport with a persistent composer and exit. */
+.guru-back{display:none}
+body.guru-mode{overflow:hidden;background:white}
+.guru-mode>aside,.guru-mode>.bottom-nav{display:none}
+.guru-mode main{margin:0;height:100vh;height:100dvh;display:flex;flex-direction:column;max-width:none}
+.guru-mode header{flex:0 0 auto;min-height:64px;padding:10px 28px}
+.guru-mode .guru-back{display:inline-flex}
+.guru-mode header .breadcrumb,.guru-mode header .mobile-brand,.guru-mode header .avatar{display:none}
+.guru-mode header .right{margin-left:auto}
+.guru-mode .content{display:flex;flex:1;min-height:0;max-width:none;width:100%;margin:0;padding:0}
+.guru-mode .chat{flex:1;min-height:0;border:0;border-radius:0;background:#fff}
+.guru-mode .chat-head{padding:18px 32px;flex:0 0 auto;border:0}
+.guru-mode .chat-head h1{font-size:20px;margin:0;letter-spacing:-.3px}
+.guru-mode .chat-head p{margin:2px 0 0}
+.guru-quota{margin-left:auto}
+.guru-mode .chat-disclaimer{text-align:center;padding:8px 20px;background:#F4F6F8;border:0;flex-shrink:0}
+.guru-mode .chat-body{max-height:none;min-height:0;padding:28px max(24px,calc((100% - 820px)/2));overscroll-behavior:contain;scrollbar-gutter:stable}
+.guru-welcome{text-align:center;margin:8px 0 28px}
+.guru-emblem{display:grid;place-items:center;width:64px;height:64px;border:1px solid #E1E6EE;border-radius:20px;background:linear-gradient(135deg,#EAF0FF,#FFFFFF);color:var(--action);margin:0 auto 16px}
+.guru-emblem .symbol{font-size:32px}
+.guru-welcome h2{font-size:26px;line-height:1.4;letter-spacing:-.5px;max-width:600px;margin:0 auto}
+.guru-mode .bubble{max-width:100%;background:#F5F7FA;border:0;padding:18px 20px;border-radius:12px}
+.guru-mode .bubble.user{max-width:85%;background:var(--action)}
+.guru-mode .suggestions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.guru-mode .chip{display:flex;justify-content:space-between;gap:12px;border-radius:10px;padding:14px 16px;color:var(--action);font-size:13px}
+.guru-context{margin:24px 0;color:var(--muted);font-size:12px}
+.guru-context summary{cursor:pointer;min-height:44px;padding:12px 0}
+.guru-context summary:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.guru-context-content{padding:18px;border:1px solid var(--line);border-radius:12px}
+.guru-context-content .actions{margin:16px 0}
+.guru-composer-wrap{flex:0 0 auto;padding:16px max(24px,calc((100% - 820px)/2)) max(12px,env(safe-area-inset-bottom));border-top:1px solid #EEF0F3;background:white}
+.guru-mode .chat-compose{padding:8px;border:1px solid #C7CDD5;border-radius:14px;box-shadow:0 3px 16px #17263D08}
+.guru-mode .chat-compose input{border:0;background:transparent;padding:10px 12px}
+.guru-mode .composer-help{padding:8px 0 0;text-align:center;margin:0}
+@media(max-width:700px){.guru-mode header{padding:8px 16px;min-height:60px}.guru-mode .chat-head{padding:14px 16px;flex-wrap:wrap;gap:10px}.guru-mode .chat-head>div{flex:1;min-width:0}.guru-mode .chat-head p{display:none}.guru-quota{margin-left:0;font-size:10px}.guru-mode .chat-body{padding:20px 16px}.guru-welcome{margin:8px 0 20px}.guru-welcome h2{font-size:22px}.guru-mode .suggestions{grid-template-columns:1fr;gap:8px}.guru-composer-wrap{padding:12px 16px max(12px,env(safe-area-inset-bottom))}.guru-mode .chat-disclaimer{font-size:11px;padding:8px 16px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#view">Skip to content</a><aside id="app-sidebar"><div class="brand" id="desktop-brand"></div><nav id="side-nav"></nav><div class="aside-bottom"><strong>Shubh Vastu Consultancy</strong>Dr. Jagdish Mohan Mavlankar<div class="divider"></div><span id="aside-note"></span></div><button id="nav-toggle" class="nav-toggle" type="button" aria-controls="side-nav" aria-expanded="false"></button></aside><main><header><button class="btn secondary guru-back" data-go="home"><span aria-hidden="true">←</span><span id="guru-back-label"></span></button><div class="breadcrumb" id="crumb"></div><div class="brand mobile-brand" id="mobile-brand"></div><div class="right"><span class="preview-label" id="preview"></span><select class="lang" id="language" aria-label="Language"><option value="mr">मराठी</option><option value="hi">हिन्दी</option><option value="en">English</option></select><div class="avatar" aria-label="Preview profile">SV</div></div></header><div class="content" id="view" tabindex="-1"></div></main><button class="guru-fab" data-go="guru"><span class="guru-fab-icon symbol" aria-hidden="true">auto_awesome</span><span id="guru-fab-label"></span></button><nav class="bottom-nav" id="bottom-nav" aria-label="Main navigation"></nav><dialog id="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-body"><h2 id="dialog-title"></h2><p id="dialog-body"></p><button class="btn" id="close-dialog"></button></dialog><script>
+const sun=`<svg class="mark" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle cx="32" cy="32" r="17" stroke="currentColor"/><circle cx="32" cy="32" r="10" stroke="currentColor"/><path d="M32 1v10m0 42v10M1 32h10m42 0h10M10 10l8 8m28 28 8 8M10 54l8-8m28-28 8-8M20 3l4 9m16 40 4 9M3 20l9 4m40 16 9 4M3 44l9-4m40-16 9-4M20 61l4-9m16-40 4-9" stroke="currentColor"/></svg>`;
+const T={
+mr:{nav:['मुख्यपृष्ठ','AI गुरुजी','जन्मकुंडली','वास्तु','प्रश्न ज्योतिष','योजना','संपर्क'],
+  more:'अधिक',
+  preview:'परस्परसंवादी डिझाइन',
+  aside:'परंपरेचा आदर. विचारपूर्वक मार्गदर्शन.',
+  greeting:'नमस्कार, स्वागत आहे.',
+  hero:'तुमचे प्रश्न.<br>विचारपूर्वक मार्गदर्शन.',
+  intro:'ज्योतिष आणि वास्तु मार्गदर्शन आता तुमच्या भाषेत. तुमचा प्रवास एका प्रश्नापासून सुरू करा.',
+  ask:'गुरुजींना विचारा',
+  chart:'जन्मकुंडली तयार करा',
+  explore:'आज तुम्हाला काय जाणून घ्यायचे आहे?',
+  services:['तुमची जन्मकुंडली','घरासाठी वास्तु','प्रश्न ज्योतिष'],
+  desc:['जन्मवेळ आणि जन्मस्थानावर आधारित गणना.','दिशा, प्रवेशद्वार आणि खोल्यांबाबत मार्गदर्शन.','एका विशिष्ट प्रश्नासाठी प्रश्नकाळावर आधारित मार्गदर्शन.'],
+  start:'सुरुवात करा →',
+  free:'मोफत चाचणी',
+  quota:'३ प्रश्न आणि १ जन्मकुंडली',
+  quotaSub:'आयुष्यात एकदाच • सध्या वापरलेले नाही',
+  plans:'योजना पाहा',
+  consultant:'वैयक्तिक सल्लामसलत',
+  consultSub:'डॉ. जगदीश मोहन मावळणकर',
+  consult:'संपर्क करा',
+  disclaimer:'ज्योतिषीय निष्कर्ष हे पारंपरिक अर्थनिर्णय आहेत; हमी नाही. महत्त्वाच्या निर्णयांसाठी तज्ज्ञांचा सल्लाही घ्या.',
+  birthTitle:'तुमची जन्ममाहिती',
+  birthSub:'अचूक गणनेसाठी कृपया खालील माहिती तपासा.',
+  dob:'जन्मतारीख',
+  time:'जन्माची अचूक वेळ',
+  place:'जन्मस्थान',
+  placeHint:'शहर, राज्य, देश',
+  placeHelp:'प्रत्यक्ष ॲपमध्ये शोधातून ठिकाण आणि वेळक्षेत्र निवडावे लागेल.',
+  unknown:'जन्मवेळ माहीत नाही',
+  unknownText:'अचूक जन्मवेळ नसल्यास लग्न आणि वेळेवर आधारित निष्कर्ष देता येत नाहीत.',
+  consent:'ही माहिती गणना सेवेकडे पाठवण्यास मी संमती देतो/देते.',
+  generate:'जन्मकुंडली तयार करा',
+  how:'पुढे काय होईल?',
+  steps:['जन्मस्थान आणि वेळक्षेत्र निश्चित करा.','विश्वसनीय सेवेतून ग्रहस्थिती मिळवा.','सोप्या भाषेत अर्थ आणि मार्गदर्शन वाचा.'],
+  birthNote:'१ नवीन गणना = १ जन्मकुंडली वापर. जतन केलेली कुंडली पुन्हा पाहणे मोफत.',
+  unavailable:'हे डिझाइन प्रात्यक्षिक आहे. गणना सेवा जोडलेली नसल्याने कोणतीही ग्रहस्थिती किंवा निष्कर्ष तयार केलेले नाहीत. कोणताही वापर मोजलेला नाही.',
+  guruTitle:'AI गुरुजी',
+  guruSub:'तुमच्या भाषेत संवाद, तुमच्या प्रश्नांवर लक्ष.',
+  guruIntro:'नमस्कार! मी तुम्हाला ज्योतिष आणि वास्तुबाबत मार्गदर्शन करू शकतो. जन्मकुंडलीचे विश्लेषण करण्यासाठी जन्मतारीख, अचूक वेळ आणि जन्मस्थान आवश्यक आहे.',
+  suggestions:['जन्मकुंडली कशी तयार करावी?','वास्तुसाठी कोणती माहिती हवी?'],
+  question:'तुमचा प्रश्न येथे लिहा…',
+  send:'पाठवा',
+  chatNote:'प्रत्येक पुढील प्रश्न वापरात मोजला जातो. वैयक्तिक सल्लामसलतीचे शुल्क वेगळे आहे.',
+  profile:'जन्ममाहिती जोडा',
+  verified:'विश्वसनीय माहिती प्रथम',
+  verifyText:'ग्रहस्थिती उपलब्ध नसल्यास गुरुजी अधिक माहिती मागतील. अंदाजावर आधारित कुंडली तयार केली जाणार नाही.',
+  vastuTitle:'तुमच्या जागेसाठी वास्तु',
+  vastuSub:'घर किंवा कार्यालयाची माहिती देऊन सुरुवात करा.',
+  property:'मालमत्तेचा प्रकार',
+  types:['घर','कार्यालय'],
+  direction:'मुख्य प्रवेशद्वाराची दिशा',
+  directions:['दिशा निवडा','उत्तर','ईशान्य','पूर्व','आग्नेय','दक्षिण','नैऋत्य','पश्चिम','वायव्य'],
+  room:'खोली किंवा भाग',
+  roomHint:'उदा. स्वयंपाकघर, शयनकक्ष',
+  layout:'मांडणीचे वर्णन',
+  layoutHint:'उत्तर दिशा, प्रवेशद्वार आणि संबंधित खोलीची जागा सांगा.',
+  vastuButton:'वास्तु मार्गदर्शन मिळवा',
+  traditional:'पारंपरिक आणि व्यावहारिक',
+  vastuExplain:'वास्तु उपाय स्वतंत्रपणे दाखवले जातील. प्रकाश, वायुवीजन आणि सुरक्षिततेबाबत व्यावहारिक सूचना वेगळ्या असतील.',
+  prashnaTitle:'प्रश्न ज्योतिष',
+  prashnaSub:'एका विशिष्ट प्रश्नासाठी प्रश्नकाळाची नोंद.',
+  prashnaText:'प्रश्नाची वेळ, ठिकाण आणि गणना पद्धत निश्चित करूनच विश्लेषण केले जाईल. सल्लागारांच्या पडताळणीनंतर ही सुविधा सुरू होईल.',
+  prashnaQuestion:'तुमचा विशिष्ट प्रश्न',
+  prashnaTime:'प्रश्न विचारण्याची तारीख आणि वेळ',
+  prashnaPlace:'सध्याचे ठिकाण',
+  prashnaButton:'पद्धत पडताळणी प्रलंबित',
+  planTitle:'तुमच्यासाठी योग्य योजना',
+  planSub:'३० दिवसांची प्रीपेड योजना. आपोआप नूतनीकरण नाही.',
+  recommend:'शिफारस',
+  month:'/ ३० दिवस',
+  lifetime:'एकदाच',
+  ai:'AI प्रश्न',
+  charts:'जन्मकुंडली',
+  vastus:'वास्तु आढावे',
+  allLang:'तिन्ही भाषा',
+  current:'सध्याची चाचणी',
+  choose:'ही योजना निवडा',
+  planNote:'प्रस्तावित किंमती. प्रत्येक पुढील प्रश्न मोजला जातो. न वापरलेला कोटा पुढे जात नाही. PDF अहवाल आणि कुंडली जुळवणी पुढील टप्प्यात.',
+  paymentTitle:'योजना निवडली',
+  paymentBody:'हे फक्त डिझाइन प्रात्यक्षिक आहे. पैसे घेतले जाणार नाहीत. प्रत्यक्ष ॲपमध्ये अंतिम करांसह किंमत आणि अटी दाखवून सुरक्षित पेमेंट सुरू होईल.',
+  close:'ठीक आहे',
+  contactTitle:'विश्वासाने संवाद साधा',
+  contactSub:'वैयक्तिक मार्गदर्शनासाठी थेट संपर्क.',
+  name:'डॉ. जगदीश मोहन मावळणकर',
+  business:'शुभ वास्तु कन्सल्टन्सी',
+  bio:'ज्योतिष आणि वास्तु विषयक वैयक्तिक सल्लामसलत. वेळ आणि शुल्क जाणून घेण्यासाठी संपर्क करा.',
+  whatsapp:'WhatsApp वर संपर्क करा',
+  call:'फोन करा',
+  contactNote:'वैयक्तिक सल्लामसलत कोणत्याही AI योजनेत समाविष्ट नाही. शुल्क आणि उपलब्ध वेळ थेट निश्चित करा.',
+  contactLanguages:'मराठी • हिन्दी • English',
+  prototypeNote:'UI प्रात्यक्षिक • अंतिम लोगो आणि मजकूर पडताळणी बाकी',
+  formConsent:'कृपया संमती द्या.'},
+hi:{nav:['होम','AI गुरुजी','जन्मकुंडली','वास्तु','प्रश्न ज्योतिष','योजनाएँ','संपर्क'],
+  more:'अधिक',
+  preview:'इंटरैक्टिव डिज़ाइन',
+  aside:'परंपरा का सम्मान। सोच-समझकर मार्गदर्शन।',
+  greeting:'नमस्कार, स्वागत है।',
+  hero:'आपके सवाल।<br>विचारपूर्ण मार्गदर्शन।',
+  intro:'ज्योतिष और वास्तु मार्गदर्शन अब आपकी भाषा में। शुरुआत अपने एक सवाल से करें।',
+  ask:'गुरुजी से पूछें',
+  chart:'जन्मकुंडली बनाएँ',
+  explore:'आज आप क्या जानना चाहते हैं?',
+  services:['आपकी जन्मकुंडली','घर के लिए वास्तु','प्रश्न ज्योतिष'],
+  desc:['जन्म के समय और स्थान पर आधारित गणना।','दिशाओं, प्रवेशद्वार और कमरों पर मार्गदर्शन।','किसी विशेष सवाल के समय पर आधारित मार्गदर्शन।'],
+  start:'शुरू करें →',
+  free:'मुफ्त परीक्षण',
+  quota:'३ सवाल और १ जन्मकुंडली',
+  quotaSub:'जीवनकाल में एक बार • अभी उपयोग नहीं किया',
+  plans:'योजनाएँ देखें',
+  consultant:'व्यक्तिगत परामर्श',
+  consultSub:'डॉ. जगदीश मोहन मावळणकर',
+  consult:'संपर्क करें',
+  disclaimer:'ज्योतिषीय निष्कर्ष पारंपरिक व्याख्याएँ हैं; गारंटी नहीं। महत्वपूर्ण फैसलों के लिए विशेषज्ञ की सलाह भी लें।',
+  birthTitle:'आपकी जन्म जानकारी',
+  birthSub:'सटीक गणना के लिए नीचे दी गई जानकारी जाँचें।',
+  dob:'जन्मतिथि',
+  time:'जन्म का सटीक समय',
+  place:'जन्मस्थान',
+  placeHint:'शहर, राज्य, देश',
+  placeHelp:'वास्तविक ऐप में खोज से स्थान और समयक्षेत्र चुनना होगा।',
+  unknown:'जन्म का समय ज्ञात नहीं है',
+  unknownText:'सटीक जन्म समय के बिना लग्न और समय-आधारित निष्कर्ष उपलब्ध नहीं होंगे।',
+  consent:'मैं यह जानकारी गणना सेवा को भेजने की सहमति देता/देती हूँ।',
+  generate:'जन्मकुंडली बनाएँ',
+  how:'आगे क्या होगा?',
+  steps:['जन्मस्थान और समयक्षेत्र की पुष्टि करें।','विश्वसनीय सेवा से ग्रह स्थिति प्राप्त करें।','सरल भाषा में व्याख्या और मार्गदर्शन पढ़ें।'],
+  birthNote:'१ नई गणना = १ जन्मकुंडली उपयोग। सहेजी गई कुंडली दोबारा देखना मुफ्त है।',
+  unavailable:'यह डिज़ाइन प्रात्यक्षिक है। गणना सेवा जुड़ी नहीं है, इसलिए कोई ग्रह स्थिति या निष्कर्ष नहीं बनाया गया। कोई उपयोग नहीं गिना गया।',
+  guruTitle:'AI गुरुजी',
+  guruSub:'आपकी भाषा में संवाद, आपके सवालों पर ध्यान।',
+  guruIntro:'नमस्कार! मैं ज्योतिष और वास्तु पर मार्गदर्शन कर सकता हूँ। जन्मकुंडली के विश्लेषण के लिए जन्मतिथि, सटीक समय और जन्मस्थान आवश्यक हैं।',
+  suggestions:['जन्मकुंडली कैसे बनाएँ?','वास्तु के लिए क्या जानकारी चाहिए?'],
+  question:'अपना सवाल यहाँ लिखें…',
+  send:'भेजें',
+  chatNote:'हर अगला सवाल उपयोग में गिना जाता है। व्यक्तिगत परामर्श का शुल्क अलग है।',
+  profile:'जन्म जानकारी जोड़ें',
+  verified:'विश्वसनीय जानकारी पहले',
+  verifyText:'ग्रह स्थिति उपलब्ध न होने पर गुरुजी अधिक जानकारी माँगेंगे। अनुमान से कुंडली नहीं बनाई जाएगी।',
+  vastuTitle:'आपके स्थान के लिए वास्तु',
+  vastuSub:'घर या कार्यालय की जानकारी से शुरुआत करें।',
+  property:'संपत्ति का प्रकार',
+  types:['घर','कार्यालय'],
+  direction:'मुख्य प्रवेशद्वार की दिशा',
+  directions:['दिशा चुनें','उत्तर','ईशान','पूर्व','आग्नेय','दक्षिण','नैऋत्य','पश्चिम','वायव्य'],
+  room:'कमरा या क्षेत्र',
+  roomHint:'जैसे रसोई, शयनकक्ष',
+  layout:'नक्शे का विवरण',
+  layoutHint:'उत्तर दिशा, प्रवेशद्वार और संबंधित कमरे का स्थान बताएँ।',
+  vastuButton:'वास्तु मार्गदर्शन पाएँ',
+  traditional:'पारंपरिक और व्यावहारिक',
+  vastuExplain:'वास्तु उपाय अलग दिखाए जाएँगे। प्रकाश, वेंटिलेशन और सुरक्षा की व्यावहारिक सलाह अलग होगी।',
+  prashnaTitle:'प्रश्न ज्योतिष',
+  prashnaSub:'एक विशिष्ट सवाल के समय का विवरण।',
+  prashnaText:'सवाल का समय, स्थान और गणना पद्धति तय करने के बाद विश्लेषण होगा। सलाहकार की पुष्टि के बाद यह सुविधा शुरू होगी।',
+  prashnaQuestion:'आपका विशिष्ट सवाल',
+  prashnaTime:'सवाल की तारीख और समय',
+  prashnaPlace:'वर्तमान स्थान',
+  prashnaButton:'पद्धति की पुष्टि बाकी',
+  planTitle:'आपके लिए सही योजना',
+  planSub:'३० दिनों की प्रीपेड योजना। स्वचालित नवीनीकरण नहीं।',
+  recommend:'अनुशंसित',
+  month:'/ ३० दिन',
+  lifetime:'एक बार',
+  ai:'AI सवाल',
+  charts:'जन्मकुंडली',
+  vastus:'वास्तु आकलन',
+  allLang:'तीनों भाषाएँ',
+  current:'वर्तमान परीक्षण',
+  choose:'यह योजना चुनें',
+  planNote:'प्रस्तावित कीमतें। हर अगला सवाल गिना जाता है। बचा कोटा आगे नहीं जुड़ता। PDF रिपोर्ट और कुंडली मिलान अगले चरण में।',
+  paymentTitle:'योजना चुनी गई',
+  paymentBody:'यह केवल डिज़ाइन प्रात्यक्षिक है। कोई भुगतान नहीं लिया जाएगा। वास्तविक ऐप में अंतिम कर सहित कीमत और शर्तें दिखाकर सुरक्षित भुगतान शुरू होगा।',
+  close:'ठीक है',
+  contactTitle:'विश्वास के साथ संवाद',
+  contactSub:'व्यक्तिगत मार्गदर्शन के लिए सीधा संपर्क।',
+  name:'डॉ. जगदीश मोहन मावळणकर',
+  business:'शुभ वास्तु कन्सल्टन्सी',
+  bio:'ज्योतिष और वास्तु पर व्यक्तिगत परामर्श। समय और शुल्क जानने के लिए संपर्क करें।',
+  whatsapp:'WhatsApp पर संपर्क करें',
+  call:'फोन करें',
+  contactNote:'व्यक्तिगत परामर्श किसी AI योजना में शामिल नहीं है। शुल्क और समय सीधे तय करें।',
+  contactLanguages:'मराठी • हिन्दी • English',
+  prototypeNote:'UI प्रात्यक्षिक • अंतिम लोगो और सामग्री की पुष्टि बाकी',
+  formConsent:'कृपया सहमति दें।'},
+en:{nav:['Home','AI Guruji','Birth Chart','Vastu','Prashna Jyotish','Plans','Contact'],
+  more:'More',
+  preview:'Interactive design preview',
+  aside:'Rooted in tradition. Guided by care.',
+  greeting:'Namaskar, welcome.',
+  hero:'Your questions.<br>Thoughtful guidance.',
+  intro:'Explore astrology and Vastu in your language. Begin your journey with a question.',
+  ask:'Ask AI Guruji',
+  chart:'Create a birth chart',
+  explore:'What would you like to explore?',
+  services:['Your birth chart','Vastu for your space','Prashna Jyotish'],
+  desc:['Calculations based on your birth time and place.','Guidance on directions, entrances and rooms.','A focused question, interpreted using its time and place.'],
+  start:'Get started →',
+  free:'Free trial',
+  quota:'3 questions and 1 birth chart',
+  quotaSub:'Once per lifetime • Unused in this preview',
+  plans:'View plans',
+  consultant:'A personal conversation',
+  consultSub:'Dr. Jagdish Mohan Mavlankar',
+  consult:'Get in touch',
+  disclaimer:'Astrological conclusions are traditional interpretations, not guarantees. Seek qualified advice for important decisions.',
+  birthTitle:'Your birth details',
+  birthSub:'Check these details carefully for an accurate calculation.',
+  dob:'Date of birth',
+  time:'Exact time of birth',
+  place:'Place of birth',
+  placeHint:'City, state, country',
+  placeHelp:'The live app will require a confirmed place and timezone from search.',
+  unknown:'I do not know my birth time',
+  unknownText:'Without an exact birth time, ascendant and time-sensitive conclusions are unavailable.',
+  consent:'I consent to sending these details to the calculation service.',
+  generate:'Generate birth chart',
+  how:'What happens next?',
+  steps:['Confirm the birthplace and timezone.','Retrieve planetary positions from a verified service.','Read clear interpretations and guidance.'],
+  birthNote:'1 new calculation uses 1 chart allowance. Viewing a saved chart is free.',
+  unavailable:'This is a design preview. The calculation service is not connected, so no planetary positions or conclusions have been generated. No allowance has been used.',
+  guruTitle:'AI Guruji',
+  guruSub:'A conversation in your language, focused on your questions.',
+  guruIntro:'Namaskar! I can help with astrology and Vastu questions. For a birth chart interpretation, I need your date of birth, exact birth time and birthplace.',
+  suggestions:['How do I create a birth chart?','What details does Vastu need?'],
+  question:'Write your question here…',
+  send:'Send',
+  chatNote:'Every follow-up counts as a question. Personal consultation is charged separately.',
+  profile:'Add birth details',
+  verified:'Reliable information first',
+  verifyText:'When planetary data is unavailable, Guruji asks for more information. A chart is never generated from AI estimates.',
+  vastuTitle:'Vastu for your space',
+  vastuSub:'Start with a few details about your home or workplace.',
+  property:'Property type',
+  types:['Home','Office'],
+  direction:'Main entrance direction',
+  directions:['Select a direction','North','Northeast','East','Southeast','South','Southwest','West','Northwest'],
+  room:'Room or area',
+  roomHint:'For example, kitchen or bedroom',
+  layout:'Describe the layout',
+  layoutHint:'Describe north, the entrance and the location of the relevant room.',
+  vastuButton:'Get Vastu guidance',
+  traditional:'Traditional and practical',
+  vastuExplain:'Traditional Vastu remedies will appear separately from practical advice on daylight, ventilation and safety.',
+  prashnaTitle:'Prashna Jyotish',
+  prashnaSub:'Record the moment of one focused question.',
+  prashnaText:'Analysis requires a confirmed question time, location and calculation method. This feature launches after consultant validation.',
+  prashnaQuestion:'Your specific question',
+  prashnaTime:'Question date and time',
+  prashnaPlace:'Current location',
+  prashnaButton:'Method validation pending',
+  planTitle:'A plan for your journey',
+  planSub:'30-day prepaid access. No automatic renewal.',
+  recommend:'Recommended',
+  month:'/ 30 days',
+  lifetime:'once per lifetime',
+  ai:'AI questions',
+  charts:'birth charts',
+  vastus:'Vastu assessments',
+  allLang:'All three languages',
+  current:'Current trial',
+  choose:'Choose plan',
+  planNote:'Proposed prices. Every follow-up counts. Unused allowance does not roll over. PDF reports and marriage matching are planned for a later phase.',
+  paymentTitle:'Plan selected',
+  paymentBody:'This is a design preview only. No payment will be taken. The live app will show the final tax-inclusive amount and terms before secure checkout.',
+  close:'Got it',
+  contactTitle:'Let’s talk personally',
+  contactSub:'Connect directly for guidance tailored to you.',
+  name:'Dr. Jagdish Mohan Mavlankar',
+  business:'Shubh Vastu Consultancy',
+  bio:'Personal astrology and Vastu consultations. Get in touch to discuss availability and fees.',
+  whatsapp:'Consult on WhatsApp',
+  call:'Call the consultancy',
+  contactNote:'Personal consultation is separate from every AI plan. Confirm the fee and appointment directly.',
+  contactLanguages:'Marathi • Hindi • English',
+  prototypeNote:'UI preview • Final logo and copy await approval',
+  formConsent:'Please provide consent.'}}
+// New interaction copy is separate; established translations above remain unchanged.
+const UI={
+ en:{remaining:'Remaining in this preview',required:'Required',invalid:'Check this field.',loading:'Simulating preview…',empty:'Write a question to enable Send.',demo:'Demo only · AI is not connected.',error:'AI is unavailable in this preview. Your question was not sent. No allowance was used.',you:'You',skip:'Skip to content'},
+ mr:{remaining:'या प्रात्यक्षिकात शिल्लक',required:'आवश्यक',invalid:'कृपया ही माहिती तपासा.',loading:'प्रात्यक्षिक सुरू आहे…',empty:'पाठवण्यासाठी प्रश्न लिहा.',demo:'केवळ प्रात्यक्षिक · AI जोडलेले नाही.',error:'या प्रात्यक्षिकात AI उपलब्ध नाही. प्रश्न पाठवलेला नाही. कोणताही वापर मोजलेला नाही.',you:'तुम्ही',skip:'मुख्य मजकुराकडे जा'},
+ hi:{remaining:'इस प्रात्यक्षिक में शेष',required:'आवश्यक',invalid:'कृपया यह जानकारी जाँचें।',loading:'प्रात्यक्षिक चल रहा है…',empty:'भेजने के लिए सवाल लिखें।',demo:'केवल प्रात्यक्षिक · AI जुड़ा नहीं है।',error:'इस प्रात्यक्षिक में AI उपलब्ध नहीं है। सवाल भेजा नहीं गया। कोई उपयोग नहीं गिना गया।',you:'आप',skip:'मुख्य सामग्री पर जाएँ'}
+};
+let lang='mr', page='home';
+const chatHistory=[];
+const results=new Set();
+const busy=new Set();
+const ids=['home','guru','birth','vastu','prashna','plans','contact'];
+const icons=['home','auto_awesome','stars','apps','schedule','workspace_premium','call'];
+const icon=name=>`<span class="symbol" aria-hidden="true">${name}</span>`;
+const view=document.querySelector('#view');
+let drafts={};
+const btn=(text,go,cls='')=>`<button class="btn ${cls}" data-go="${go}">${text}</button>`;
+const field=(id,label,type='text',placeholder='',full=false)=>`<div class="field ${full?'full':''}"><label for="${id}">${label}</label><input id="${id}" name="${id}" type="${type}" placeholder="${placeholder}" required></div>`;
+let navExpanded=false;
+const navCopy={en:['Expand navigation','Collapse navigation'],mr:['मेनू विस्तृत करा','मेनू संक्षिप्त करा'],hi:['मेनू खोलें','मेनू छोटा करें']};
+function syncNavDrawer(){
+ document.body.classList.toggle('nav-expanded',navExpanded);
+ const toggle=document.querySelector('#nav-toggle');
+ toggle.setAttribute('aria-expanded',String(navExpanded));
+ toggle.setAttribute('aria-label',navCopy[lang][navExpanded?1:0]);
+ toggle.title=navCopy[lang][navExpanded?1:0];
+ if(!toggle.firstElementChild) toggle.innerHTML='<span class="toggle-arrow symbol" aria-hidden="true">keyboard_double_arrow_right</span><span class="nav-label"></span>';
+ toggle.querySelector('.nav-label').textContent=navCopy[lang][navExpanded?1:0];
+}
+function nav(){const t=T[lang];syncNavDrawer();document.querySelector('#guru-fab-label').textContent=t.guruTitle;document.querySelector('.guru-fab').setAttribute('aria-label',t.ask);
+document.documentElement.lang=lang;
+document.querySelectorAll('.brand').forEach(x=>x.innerHTML=sun+'<div><strong>Shubh Vastu</strong><small>AI Astro</small></div>');
+document.querySelector('#side-nav').innerHTML=ids.map((id,i)=>id==='guru'?'':`<button data-go="${id}" title="${t.nav[i]}" aria-label="${t.nav[i]}" class="${page===id?'active':''}" ${page===id?'aria-current="page"':''}><span class="ico" aria-hidden="true">${icon(icons[i])}</span><span class="nav-label">${t.nav[i]}</span></button>`).join('');
+document.querySelector('#bottom-nav').innerHTML=['home','birth','vastu','more'].map(id=>`<button data-go="${id}" class="${page===id||(id==='more'&&['prashna','plans','contact'].includes(page))?'active':''}"><span class="ico" aria-hidden="true">${icon(id==='more'?'menu':icons[ids.indexOf(id)])}</span>${id==='more'?t.more:t.nav[ids.indexOf(id)]}</button>`).join('');
+document.querySelector('#crumb').textContent='Shubh Vastu AI Astro / '+(page==='more'?t.more:t.nav[ids.indexOf(page)]);
+document.querySelector('#preview').textContent=t.preview;
+document.querySelector('#aside-note').textContent=t.aside;
+document.querySelector('#close-dialog').textContent=t.close;}
+function saveDraft(){view.querySelectorAll('input,textarea,select').forEach(el=>{if(el.id) drafts[page+':'+el.id]=el.type==='checkbox'?el.checked:el.value})}
+function restoreDraft(){view.querySelectorAll('input,textarea,select').forEach(el=>{let v=drafts[page+':'+el.id];if(v!==undefined){if(el.type==='checkbox')el.checked=v;else el.value=v}});syncUnknown()}
+function heading(title,sub){return `<div class="page-heading"><p class="eyebrow">Shubh Vastu AI Astro</p><h1>${title}</h1><p class="muted">${sub}</p></div>`}
+function status(){return `<div class="status" role="status">${T[lang].unavailable}</div>`}
+// QuotaSummary: preview balances never change, since no service is connected.
+function quotaMetrics(){const t=T[lang];return `<p class="small muted">${UI[lang].remaining}</p><div class="quota-metrics" aria-label="${UI[lang].remaining}">${[[3,t.ai],[1,t.charts]].map(([n,label])=>`<div class="quota-metric"><strong>${n} / ${n}</strong><span>${label}</span><meter min="0" max="${n}" value="${n}" aria-label="${label}">${n}/${n}</meter></div>`).join('')}</div>`}
+function render(){document.body.classList.toggle('guru-mode',page==='guru');nav();document.querySelector('#guru-back-label').textContent=T[lang].nav[0];
+const t=T[lang];
+let h='';
+if(page==='home'){h=`<section class="hero"><div class="hero-copy"><p class="eyebrow">${t.greeting}</p><h1>${t.hero}</h1><p>${t.intro}</p><div class="actions">${btn(t.ask,'guru')}${btn(t.chart,'birth','secondary')}</div></div><div class="cosmos" aria-hidden="true"><svg class="cosmos-art" viewBox="0 0 240 240" fill="none">
+<defs><linearGradient id="cosmos-gradient" x1="20" y1="20" x2="220" y2="220" gradientUnits="userSpaceOnUse"><stop stop-color="#DC2626"/><stop offset=".5" stop-color="#EF4C24"/><stop offset="1" stop-color="#F59E0B"/></linearGradient></defs>
+<g stroke="url(#cosmos-gradient)" stroke-width="1.25"><circle cx="120" cy="120" r="114"/><rect x="30" y="30" width="180" height="180" transform="rotate(45 120 120)"/><rect x="54" y="54" width="132" height="132"/><circle cx="120" cy="120" r="20"/><circle cx="120" cy="120" r="12"/><path d="M120 82v12m0 52v12M82 120h12m52 0h12M93 93l9 9m36 36 9 9M93 147l9-9m36-36 9-9M106 85l5 11m18 48 5 11M85 106l11 5m48 18 11 5M85 134l11-5m48-18 11-5M106 155l5-11m18-48 5-11"/></g>
+<g fill="url(#cosmos-gradient)"><path d="m120 -5 4 7 7 4-7 4-4 7-4-7-7-4 7-4Z"/><path d="m120 223 4 7 7 4-7 4-4 7-4-7-7-4 7-4Z"/><path d="m6 109 4 7 7 4-7 4-4 7-4-7-7-4 7-4Z"/><path d="m234 109 4 7 7 4-7 4-4 7-4-7-7-4 7-4Z"/></g>
+</svg></div></section><div class="section-top"><h2>${t.explore}</h2></div><div class="grid">${['birth','vastu','prashna'].map((p,i)=>`<button class="card service" data-go="${p}"><span class="service-icon" aria-hidden="true">${icon(['stars','apps','schedule'][i])}</span><h3>${t.services[i]}</h3><p>${t.desc[i]}</p><span class="arrow">${t.start}</span></button>`).join('')}</div><section class="usage" aria-labelledby="trial-title">
+ <div class="trial-heading"><span class="trial-icon">${icon('redeem')}</span><div><h3 id="trial-title">${t.free}</h3><p class="small muted">${t.quotaSub}</p></div></div>
+ <div class="trial-balances">${[[3,t.ai,'chat_bubble'],[1,t.charts,'stars']].map(([n,label,symbol])=>`<div class="trial-balance"><span class="trial-category">${icon(symbol)}${label}</span><div class="trial-value"><strong>${n}<small> / ${n}</small></strong><span>${UI[lang].remaining}</span></div><meter min="0" max="${n}" value="${n}" aria-label="${label}">${n}/${n}</meter></div>`).join('')}</div>
+ <div class="trial-footer"><span class="small muted">${t.quota}</span>${btn(t.plans,'plans')}</div>
+ </section><div class="consult"><div class="portrait" aria-hidden="true">JM</div><div><h3>${t.consultant}</h3><p class="small muted">${t.consultSub}</p></div>${btn(t.consult,'contact')}</div><footer>${t.disclaimer}</footer>`}
+
+if(page==='birth'){h=heading(t.birthTitle,t.birthSub)+`<div class="twocol"><form class="card" id="birth-form"><div class="form-grid">${field('dob',t.dob,'date')}${field('time',t.time,'time')}<div class="field full"><label class="check"><input type="checkbox" id="unknown">${t.unknown}</label><div id="unknown-note" class="note" hidden>${t.unknownText}</div></div>${field('place',t.place,'text',t.placeHint,true)}</div><p class="small muted" style="margin-top:8px">${t.placeHelp}</p><label class="check"><input type="checkbox" id="consent" required>${t.consent}</label><button class="btn" id="generate" type="submit">${t.generate}</button><p class="small muted" style="margin-top:14px">${t.birthNote}</p><div id="form-result"></div></form><section class="card"><h2>${t.how}</h2><ol class="steps">${t.steps.map(x=>`<li>${x}</li>`).join('')}</ol><div class="note">${t.disclaimer}</div>${btn(t.consult,'contact')}</section></div>`}
+
+if(page==='guru'){
+ h=`<section class="chat guru-stage" aria-label="${t.guruTitle}">
+  <div class="chat-head"><span class="service-icon">${icon('auto_awesome')}</span><div><h1>${t.guruTitle}</h1><p class="small muted">${t.guruSub}</p></div><span class="badge guru-quota">${t.free} · ${t.quota}</span></div>
+  <div class="note chat-disclaimer">${UI[lang].demo}</div>
+  <div class="chat-body" id="messages" aria-live="polite">
+   <div class="guru-welcome"><span class="guru-emblem">${icon('auto_awesome')}</span><h2>${t.guruSub}</h2></div>
+   <div class="bubble"><span class="message-label">${t.guruTitle} · ${t.preview}</span>${t.guruIntro}</div>
+   <div class="suggestions">${t.suggestions.map((q,i)=>`<button class="chip" data-suggest="${i}">${q}<span aria-hidden="true"> ↗</span></button>`).join('')}</div>
+   <details class="guru-context"><summary>${t.verified} · ${t.free}</summary><div class="guru-context-content"><h3>${t.quota}</h3>${quotaMetrics()}<p class="small muted">${t.chatNote}</p><p class="small muted">${t.verifyText}</p><div class="actions">${btn(t.profile,'birth','secondary')}${btn(t.consult,'contact')}</div><p class="small muted">${t.prototypeNote}</p></div></details>
+  </div>
+  <div class="guru-composer-wrap"><form class="chat-compose" id="chat-form"><label class="sr-only" for="question">${t.question}</label><input id="question" placeholder="${t.question}" required maxlength="2000"><button class="btn" disabled aria-describedby="composer-help">${t.send}</button></form><p class="composer-help" id="composer-help">${UI[lang].empty}</p></div>
+ </section>`;
+}
+
+if(page==='vastu'){h=heading(t.vastuTitle,t.vastuSub)+`<div class="twocol"><form class="card" id="vastu-form"><div class="form-grid"><div class="field"><label for="property">${t.property}</label><select id="property">${t.types.map((x,i)=>`<option value="${i}">${x}</option>`).join('')}</select></div><div class="field"><label for="direction">${t.direction}</label><select id="direction" required>${t.directions.map((x,i)=>`<option value="${i||''}">${x}</option>`).join('')}</select></div>${field('room',t.room,'text',t.roomHint,true)}<div class="field full"><label for="layout">${t.layout}</label><textarea id="layout" placeholder="${t.layoutHint}" required></textarea></div></div><label class="check"><input type="checkbox" id="vastu-consent" required>${t.consent}</label><button class="btn">${t.vastuButton}</button><div id="form-result"></div></form><section class="card"><h2>${t.traditional}</h2><p class="muted">${t.vastuExplain}</p><div class="note">${t.disclaimer}</div>${btn(t.consult,'contact')}</section></div>`}
+
+if(page==='prashna'){h=heading(t.prashnaTitle,t.prashnaSub)+`<div class="twocol"><section class="card"><div class="form-grid"><div class="field full"><label for="prashna-question">${t.prashnaQuestion}</label><textarea id="prashna-question" placeholder="${t.question}"></textarea></div>${field('prashna-time',t.prashnaTime,'datetime-local')}${field('prashna-place',t.prashnaPlace,'text',t.placeHint)}</div><div class="note" id="prashna-pending">${t.prashnaText}</div><button class="btn" disabled aria-describedby="prashna-pending">${t.prashnaButton}</button></section><section class="card"><h2>${t.consultant}</h2><p class="muted">${t.consultSub}</p>${btn(t.consult,'contact')}</section></div>`}
+
+if(page==='plans'){const plans=[['Free',0,3,1,0],['Basic',49,20,1,1],['Standard',149,75,3,3],['Premium',349,150,5,5]];h=heading(t.planTitle,t.planSub)+`<div class="plan-grid">${plans.map(([n,p,a,c,v],i)=>`<section class="card plan ${i===2?'rec':''}">${i===2?`<span class="badge">${t.recommend}</span>`:''}
+  <div class="plan-heading"><span class="plan-symbol" aria-hidden="true">${icon(['add','diamond','auto_awesome','workspace_premium'][i])}</span><h2>${n}</h2></div>
+  <div class="plan-price"><div class="price"><span class="currency">₹</span>${p}</div><div class="small muted">${i===0?t.lifetime:t.month}</div></div>
+  <ul><li><span><strong>${a}</strong> ${t.ai}</span></li><li><span><strong>${c}</strong> ${t.charts}</span></li><li class="${v===0?'zero':''}"><span><strong>${v}</strong> ${t.vastus}</span></li><li><span>${t.allLang}</span></li></ul><button class="btn ${i!==2?'secondary':''}" ${i===0?'disabled':`data-plan="${n}"`}>${i===0?t.current:t.choose}</button></section>`).join('')}</div><div class="note">${t.planNote}</div><p class="small muted">${t.contactNote}</p>`}
+
+if(page==='contact'){h=heading(t.contactTitle,t.contactSub)+`<section class="card contact-hero"><div class="portrait" aria-hidden="true">JM</div><p class="eyebrow">${t.business}</p><h1>${t.name}</h1><p class="muted">${t.bio}</p><span class="badge">${t.contactLanguages}</span><div class="actions" style="justify-content:center"><a class="btn" href="https://wa.me/919322100684" target="_blank" rel="noopener noreferrer">${t.whatsapp} ↗</a><a class="btn secondary" href="tel:+919322100684">${t.call}</a></div><p class="muted" style="margin-top:20px">+91 93221 00684</p><div class="divider"></div><p class="small muted">${t.contactNote}</p></section>`}
+
+if(page==='more'){h=heading(t.more,'Shubh Vastu AI Astro')+`<div class="more-links">${['prashna','plans','contact'].map(id=>`<button data-go="${id}">${t.nav[ids.indexOf(id)]} →</button>`).join('')}</div>`}view.innerHTML=h+(page==='guru'?'':`<footer>${t.prototypeNote}</footer>`);restoreDraft();enhance();bind();}
+function syncUnknown(){let c=document.querySelector('#unknown');if(!c)return;
+document.querySelector('#time').disabled=c.checked;
+document.querySelector('#time').required=!c.checked;
+document.querySelector('#generate').disabled=c.checked||busy.has('birth');
+document.querySelector('#unknown-note').hidden=!c.checked}
+// Form state remains in memory only. No personal data is persisted or transmitted.
+function enhance(){
+ document.querySelector('.skip-link').textContent=UI[lang].skip;
+ document.querySelector('#side-nav').setAttribute('aria-label',T[lang].nav[0]);
+ document.querySelectorAll('#bottom-nav button.active').forEach(el=>el.setAttribute('aria-current','page'));
+ view.querySelectorAll('h1')[0]?.setAttribute('tabindex','-1');
+ view.querySelectorAll('[required]').forEach(el=>{
+  const label=view.querySelector(`label[for="${el.id}"]`);
+  if(label && el.id!=='question') label.insertAdjacentHTML('beforeend',`<span class="required" aria-hidden="true"> *</span><span class="sr-only"> ${UI[lang].required}</span>`);
+ });
+ const dob=document.querySelector('#dob');
+ if(dob){const now=new Date();dob.max=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+document.querySelector('#time').setAttribute('aria-describedby','unknown-note');
+document.querySelector('#generate').setAttribute('aria-describedby','unknown-note');}
+ if(results.has(page)) document.querySelector('#form-result').innerHTML=status();
+ 
+if(page==='vastu'&&!results.has(page)) document.querySelector('#form-result').innerHTML=status();
+ 
+if(page==='guru') drawMessages();
+ if(busy.has(page)) setBusy(page,true);
+}
+function drawMessages(){
+ const messages=document.querySelector('#messages');if(!messages)return;
+ messages.querySelectorAll('[data-message]').forEach(el=>el.remove());
+ chatHistory.forEach(message=>{
+  const block=document.createElement('div');block.dataset.message='true';block.className=message.role==='user'?'bubble user':'status error';
+  const label=document.createElement('span');label.className='message-label';label.textContent=message.role==='user'?UI[lang].you:T[lang].guruTitle+' · '+T[lang].preview;block.append(label);
+  block.append(document.createTextNode(message.role==='user'?message.text:UI[lang].error));messages.append(block);
+ });
+ messages.scrollTop=messages.scrollHeight;
+}
+function setBusy(target,active){
+ if(page!==target)return;
+ const form=view.querySelector('form');if(!form)return;
+ form.setAttribute('aria-busy',String(active));
+ const button=form.querySelector('button[type="submit"],button:not([type])');
+ button.disabled=active;button.innerHTML=active?`<span class="loading" aria-hidden="true"></span>${UI[lang].loading}`:T[lang][target==='guru'?'send':target==='birth'?'generate':'vastuButton'];
+ if(!active&&target==='guru')updateComposer();
+ if(!active&&target==='birth')syncUnknown();
+}
+function updateComposer(){const input=document.querySelector('#question');if(input)document.querySelector('#chat-form button').disabled=!input.value.trim()||busy.has('guru')}
+function validate(form){
+ let first=null;
+ form.querySelectorAll('input,select,textarea').forEach(el=>{
+  document.getElementById(el.id+'-error')?.remove();el.removeAttribute('aria-invalid');
+  const prior=(el.getAttribute('aria-describedby')||'').split(' ').filter(x=>x&&x!==el.id+'-error');
+  el.setAttribute('aria-describedby',prior.join(' '));
+  const emptyText=el.required&&!el.disabled&&el.type!=='checkbox'&&!el.value.trim();
+  if(!el.checkValidity()||emptyText){
+   const error=document.createElement('span');error.id=el.id+'-error';error.className='field-error';error.textContent=el.type==='checkbox'?T[lang].formConsent:UI[lang].invalid+' '+(el.validationMessage||UI[lang].required);
+   (el.type==='checkbox'?el.closest('label'):el).after(error);el.setAttribute('aria-invalid','true');el.setAttribute('aria-describedby',[...prior,error.id].join(' '));first??=el;
+  }
+ });first?.focus();return !first;
+}
+function bind(){
+ document.querySelector('#unknown')?.addEventListener('change',syncUnknown);
+ for(const id of ['birth-form','vastu-form']){
+  const form=document.getElementById(id);if(!form)continue;form.noValidate=true;
+  form.addEventListener('submit',e=>{
+   e.preventDefault();if(busy.has(page)||!validate(form))return;
+   saveDraft();
+const target=page;busy.add(target);setBusy(target,true);
+   setTimeout(()=>{busy.delete(target);results.add(target);
+if(page===target){setBusy(target,false);
+document.querySelector('#form-result').innerHTML=status();}},650);
+  });
+ }
+ document.querySelector('#question')?.addEventListener('input',updateComposer);updateComposer();
+ document.querySelector('#chat-form')?.addEventListener('submit',e=>{
+  e.preventDefault();
+const input=document.querySelector('#question');if(!input.value.trim()||busy.has('guru'))return;
+  chatHistory.push({role:'user',text:input.value.trim()});input.value='';saveDraft();drawMessages();busy.add('guru');setBusy('guru',true);
+  setTimeout(()=>{chatHistory.push({role:'assistant'});busy.delete('guru');
+if(page==='guru'){drawMessages();setBusy('guru',false)}},650);
+ });
+}
+document.addEventListener('click',e=>{const go=e.target.closest('[data-go]');if(go){saveDraft();page=go.dataset.go;render();view.querySelector('h1')?.focus({preventScroll:true});window.scrollTo(0,0)}const plan=e.target.closest('[data-plan]');if(plan){document.querySelector('#dialog-title').textContent=T[lang].paymentTitle+' — '+plan.dataset.plan;
+document.querySelector('#dialog-body').textContent=T[lang].paymentBody;
+document.querySelector('#dialog').showModal()}const s=e.target.closest('[data-suggest]');if(s){document.querySelector('#question').value=T[lang].suggestions[+s.dataset.suggest];
+document.querySelector('#question').focus();updateComposer()}});
+document.querySelector('#language').addEventListener('change',e=>{saveDraft();lang=e.target.value;render()});
+document.querySelector('#nav-toggle').addEventListener('click',()=>{navExpanded=!navExpanded;syncNavDrawer()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&navExpanded&&!document.querySelector('dialog').open){navExpanded=false;syncNavDrawer();if(page!=='guru')document.querySelector('#nav-toggle').focus()}});
+document.querySelector('#close-dialog').addEventListener('click',()=>document.querySelector('#dialog').close());render();
+</script>
+</body>
+</html>
+

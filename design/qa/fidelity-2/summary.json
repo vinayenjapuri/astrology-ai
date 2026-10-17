@@ -1,0 +1,19 @@
+{
+  "a_docx": "/Users/vinay/.codex/plugins/cache/openai-curated-remote/openai-templates/0.1.1/skills/artifact-template-system-design/assets/reference.docx",
+  "b_docx": "/Users/vinay/astrology-ai/design/Shubh-Vastu-System-Design.docx",
+  "pages_a": 7,
+  "pages_b": 10,
+  "changed_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "num_changed_pages": 10
+}

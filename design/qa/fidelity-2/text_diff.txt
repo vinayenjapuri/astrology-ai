@@ -1,0 +1,437 @@
+--- a
++++ b
+@@ -1,196 +1,280 @@
+-System Name
+-Title of Proposal
++Shubh Vastu AI Astro
++Phase 1 System Design
+ STATUS
+-[Draft / Proposed / Approved]
++Proposed
+ OWNER
+-[Team Name]
+-LAST UPDATED
+-[Month, DD, YYYY]
++Client owner
++UPDATED
++18 Oct 2026
+ Authors
+-[Name(s)]
++Development team
+ Reviewers
+-[Reviewer names, roles, or groups]
++Dr. Jagdish Mohan Mavlankar and client owner
+ Related docs
+-[Link to related docs]
++UI prototype: ui-prototype.html
+ Scope
+-[One-sentence description of what this design covers]
++Phase 1 PWA and UI design
+ 1.  Abstract
+-[Summarize the proposed system, the problem it solves, and the intended outcome. Describe the core design at a high level, including the main boundaries, dependencies, and guarantees. Keep this section concise enough that a reviewer can understand the proposal without reading the full document.]
+-[Describe the workloads and constraints this design must support. Clarify what the proposal does not attempt to solve, the assumptions it relies on, and the most important operational or implementation boundaries.]
++Launch an Android-installable PWA for Shubh Vastu Consultancy, with Marathi as the default and Hindi and English support. React provides the customer interface; a Firebase backend controls identity, quotas, payments and access to AstrologyAPI.
++Phase 1 includes birth charts, AI Guruji, basic Vastu, a gated Prashna workflow and prepaid memberships. Reliable provider data is required for every chart interpretation. The design targets an initial pilot of 100 paying users; this is a planning scenario, not a capacity guarantee.
+ 2.  Goals and Non-Goals
+ Goals
+ Non-goals
+-[Goal 1: measurable outcome this design must achieve]
+-[Non-goal 1: explicitly excluded capability or outcome]
+-[Goal 2: reliability, scale, security, or user outcome]
+-[Non-goal 2: adjacent problem deferred to a later phase]
+-[Goal 3: required platform, policy, or operational capability]
+-[Non-goal 3: unsupported workflow, audience, or interface]
+-[Goal 4: rollout, reversibility, or blast-radius constraint]
+-[Non-goal 4: guarantee the design cannot or will not provide]
++Marathi, Hindi and English customer journeys
++Native Android or Play Store release
++Verified birth charts and traceable AI interpretations
++Guaranteed predictions or invented positions
++Paid plans with server-enforced usage limits
++Paid PDF reports and marriage matching
++Mobile usability, ownership and cost controls
++Floor-plan image analysis and automatic renewal
+ 3.  Background and Problem Statement
+-[Describe the current state, the specific problem, and why the existing approach is no longer sufficient. Include relevant scale, reliability, security, cost, or developer-experience constraints, and explain the impact of leaving the problem unresolved.]
+-[Explain the proposed system boundary and the major responsibilities on each side. Name the primary components, how they interact, and which inputs determine behavior. State the key design principle or invariant that should guide implementation and review.]
++Customers need accessible regional-language guidance and a clear route to Dr. Jagdish Mohan Mavlankar. The product must distinguish traditional interpretations from practical advice and make subscription limits visible before customers pay.
++The client owns the source code, domain and service accounts. The PWA cannot call paid providers directly. The backend is the sole authority for paid entitlements and calculation provenance. A full paid MVP exceeds the original INR 10,000 budget; reduce scope if that ceiling remains fixed.
+ 4.  Proposed Architecture
+-Figure 1. [Proposed System Architecture].
++Figure 1. Customer requests cross the backend before reaching paid services.
+ Core components
+ Component
+ Responsibility
+ Primary storage
+ Failure behavior
+-[Component A]
+-[Describe its responsibility, inputs, and outputs.]
+-[Primary datastore or dependency]
+-[Describe behavior when this component fails.]
+-[Component B]
+-[Describe the core decision or processing responsibility.]
+-[Configuration, policy, or metadata store]
+-[Describe fail-open, fail-closed, or fallback behavior.]
+-[Component C]
+-[Describe downstream execution and response handling.]
+-[Queue, cache, adapter, or service dependency]
+-[Describe timeout, retry, and terminal failure behavior.]
+-[Component D]
+-[Describe durable state, audit, or lifecycle responsibilities.]
+-[Primary operational datastore]
+-[Describe write failure and recovery behavior.]
+-[Component E]
+-[Describe metrics, logs, traces, and alerting responsibilities.]
+-[Telemetry and analytics backend]
+-[Describe degraded-mode monitoring and escalation.]
++React PWA
++Forms, chat, plan display and language selection
++Local UI preferences
++Offline notice; no new paid calls
++Firebase BFF
++Validate, reserve quotas and orchestrate providers
++Firestore operations
++Fail closed; reconcile pending work
++AstrologyAPI
++Chart JSON, hosted chat and basic Vastu
++Vendor service
++Show unavailable; never invent facts
++Firebase data
++User records, saved output and usage ledger
++Firestore
++Do not start calls if reservation fails
++Payments and ops
++Razorpay webhooks, alerts and support
++Payment ledger
++Pending access until verified
+ 5.  Request Lifecycle
+-[Describe how a request, event, or job enters the system and identify the required inputs.]
+-[Describe validation, authentication, authorization, and normalization at the system boundary.]
+-[Describe which configuration, policy, state, or dependency data is loaded before processing.]
+-[Describe the primary decision or processing step and the output it produces.]
+-[Describe which durable state must be written before side effects or downstream execution begin.]
+-[Describe downstream calls, retries, timeouts, budget limits, and terminal conditions.]
+-[Describe final state updates, the response or output, and the metrics, logs, and traces emitted.]
++A signed-in customer submits a birth profile, question or Vastu assessment with a unique request ID. The interface shows the relevant allowance before submission.
++The backend verifies the Firebase ID token, resource ownership, payload limits and rate limits. It normalizes birth time, location, timezone and calculation settings.
++Load the server-owned plan version, active period, quota counters and consent state. Reuse valid cached natal data only when the complete calculation key matches.
++Atomically reserve the required allowance and create a pending operation. Call the selected provider adapter outside the Firestore transaction; never make external calls inside a retried transaction.
++Persist provider responses and provenance before marking the operation complete. AI receives verified chart facts; missing facts produce a clarification or unavailable state, not guessed positions.
++Use explicit provider deadlines. Retry only safe reads with bounded backoff. A timed-out chat or payment call is uncertain; reconcile it rather than blindly issuing duplicate billable work.
++Commit usage once on successful delivery; release the reservation on confirmed failure. Return the saved response and remaining quota. Log request IDs, latency and costs without birth details or message bodies.
+ 6.  API and Data Contracts
+ Primary data contract
+ Field
+ Type
+ Required
+ Description
+-field_name_1
+-[Type]
+-[Yes / No]
+-[Describe meaning, validation, ownership, and lifecycle.]
+-field_name_2
+-[Type]
+-[Yes / No]
+-[Describe the source and permitted values.]
+-field_name_3
+-[Type]
+-[Yes / No]
+-[Describe versioning or compatibility requirements.]
+-field_name_4
+-[Type]
+-[Yes / No]
+-[Describe relationship to other identifiers or records.]
+-field_name_5
+-[Type]
+-[Yes / No]
+-[Describe privacy, retention, or audit constraints.]
+-field_name_6
+-[Type]
+-[Yes / No]
+-[Describe array, object, or nested structure semantics.]
+-field_name_7
+-[Type]
+-[Yes / No]
+-[Describe how this field affects system behavior.]
++requestId
++UUID
++Yes
++User-scoped idempotency key; reject changed payload.
++operation
++Enum
++Yes
++chart, chat, vastu or prashna; validated allowlist.
++profileId
++String
++Conditional
++Owned saved profile for chart-dependent requests.
++locale
++Enum
++Yes
++mr, hi or en; Marathi is the default.
++inputs
++Object
++Yes
++Validated birth, question or property fields.
++provenance
++Object
++Server
++Endpoint, input hash, timezone, settings and timestamp.
++status
++Enum
++Server
++pending, succeeded, failed or uncertain.
+ Contract guarantees
+-[State the ordering, durability, or validation guarantee that must hold before execution.]
+-[State how writes, attempts, or events are identified and ordered.]
+-[State which versions, identifiers, or inputs must be captured for audit and replay.]
+-[State what this data is and is not a source of truth for.]
+-The versioned schema or interface definition is published at 
+-[Link to interface or schema] and update it with each contract release.
++Plan enforcement and payment verification happen on the backend. Client-visible prices and counters cannot grant entitlement.
++Use a request ID scoped to the user and operation. Reject the same ID with a different payload. Deduplicate payment events by provider event ID.
++Store provider name, endpoint, calculation settings, input hash, schema version and calculation timestamp. Pin the plan and prompt version for each operation.
++Provider calculations supply chart facts. AI output is an interpretation and must not override those facts. Payment webhooks and reconciliation establish paid access.
++Implementation contracts will live in contracts/openapi.yaml and contracts/schemas/.
++These are planned repository paths; freeze v1 schemas and representative fixtures during milestone M1.
+ 7. Consistency, Idempotency, and Replay
+-[Explain the consistency, idempotency, replay, ordering, or concurrency guarantees required by this design. Distinguish client-facing guarantees from internal analysis or recovery behavior, and identify where duplicate work or partial failure is acceptable.]
++Firestore transactions serialize entitlement changes and quota reservations. External provider execution cannot be made exactly once without vendor support. A durable operation record allows pending and uncertain attempts to be reconciled without charging the customer twice.
+ Scenario
+ Expected behavior
+ Reasoning
+-[Duplicate, replayed, or repeated input]
+-[Describe the stable response and state transition.]
+-[Explain how duplicate work or side effects are prevented.]
+-[Required write or dependency fails]
+-[Describe the error, retryability, and side-effect behavior.]
+-[Explain why the failure mode is safe and observable.]
+-[Timeout, partial failure, or downstream error]
+-[Describe retry, fallback, and budget behavior.]
+-[Explain how auditability and consistency are maintained.]
+-[Configuration changes during execution]
+-[Describe which version remains authoritative.]
+-[Explain how mid-request behavior changes are prevented.]
++Duplicate request ID
++Return saved output or pending state.
++One customer quota debit per operation.
++Reservation write fails
++Return retryable error; no provider call.
++Avoid untracked paid work.
++Provider timeout
++Mark uncertain; reconcile or resolve via support.
++A timeout may still be billed by the vendor.
++Plan changes mid-request
++Use reserved plan version and period.
++Prevent ambiguous quota changes.
+ 8. Security and Privacy Considerations
+-[Describe authentication, authorization, and tenant or data-boundary requirements.]
+-[Describe data minimization, sensitive payload handling, and logging restrictions.]
+-[Describe credential, secret, key, and certificate storage and access requirements.]
+-[Describe safe defaults for administrative, replay, migration, and debugging tools.]
+-[Describe retention, deletion, residency, privacy, and audit requirements.]
++Use Firebase Authentication with Google sign-in in the MVP. Firestore rules restrict users to their own profiles and saved results. Deny direct writes to payments, entitlements, usage and operations.
++Collect only necessary birth and property information with clear consent. Do not place birth details, questions or access tokens in URLs, analytics or routine logs. Keep sensitive responses out of service-worker caches.
++Store provider keys and webhook secrets in Secret Manager. Use separate development and production projects, least-privilege service identities and server-only credentials.
++Require privileged roles for support tools. Keep provider calls and quota mutations behind authenticated routes; add per-user limits and App Check where supported. Disable sensitive debug logging in production.
++Offer deletion of profiles and saved conversations. Propose 90-day chat retention and profile retention until deletion, subject to client approval. Keep legally required payment records separately; verify provider retention and region availability before launch.
+ 9.  Operational Readiness
+ Signal
+ SLO or alert
+ Owner
+ Launch gate
+-[Success or completion rate]
+-[Target, measurement window, and page threshold]
+-[Owning team]
+-[Required / Recommended]
+-[Latency or processing time]
+-[Percentile target, alert threshold, and duration]
+-[Owning team]
+-[Required / Recommended]
+-[Fallback, retry, or error rate]
+-[Warning and paging thresholds by workload class]
+-[Owning team]
+-[Required / Recommended]
+-[Configuration or deployment drift]
+-[Condition that indicates unsafe divergence]
+-[Owning team]
+-[Required / Recommended]
+-[Recovery, replay, or integrity check]
+-[Synthetic or sampled validation cadence and target]
+-[Owning team]
+-[Required / Recommended]
+-Rollout constraint: [Describe dry-run, canary, feature-flag, validation, rollback, and promotion requirements before production launch.]
++Successful requests
++Proposed target >= 98% over 7 days
++Developer
++Pilot validation
++Latency
++Proposed p95: chart < 10s, chat < 30s
++Developer
++Measure vendor
++Cost and wallet
++Alert at 70% and 90% of budget
++Client + dev
++Required
++Entitlement integrity
++Zero duplicate grants in replay tests
++Developer
++Required
++Recovery checks
++Test timeout, rollback and account deletion
++Developer
++Required
++Rollout: invite-only pilot; feature flags for paid calls and Prashna. Disable new paid work when the configured server budget is reached. Keep saved results readable.
+ 10. Alternatives Considered
+ Alternative
+-Why it was considered
+-Why it was not selected
+-[Alternative 1]
+-[Describe the main benefit or reason to consider it.]
+-[Describe the decisive tradeoff or unmet requirement.]
+-[Alternative 2]
+-[Describe the relevant capability or simplicity.]
+-[Describe added complexity, risk, cost, or scope.]
+-[Alternative 3]
+-[Describe the potential performance or product benefit.]
+-[Describe explainability, maturity, or operational concerns.]
+-[Alternative 4]
+-[Describe the consistency or implementation appeal.]
+-[Describe the technical boundary that makes it unsuitable.]
++Why considered
++Decision
++Native Android
++Play Store distribution and native features
++Defer; PWA minimizes initial build scope.
++Direct browser API calls
++Fewer backend components
++Reject; exposes keys and bypasses quotas.
++Own OpenAI or Gemini layer
++Control prompts and response quality
++Fallback if hosted chat fails validation; re-cost first.
++Fixed AstrologyAPI plan
++Predictable bill at higher volume
++Begin with pay-as-you-go; assess eligible call mix.
+ 11. Open Questions
+-[Open question 1: identify a decision that requires reviewer input before implementation.]
+-[Open question 2: identify an unresolved product, policy, or operational constraint.]
+-[Open question 3: identify a scale, deployment, or regional design choice.]
+-[Open question 4: identify an ownership, access-control, or tooling decision.]
++Vendor validation: confirm Marathi quality, chat context and calculation provenance, Vastu response structure, commercial caching rights and failure billing.
++Prashna: consultant must approve the question-time method, required coordinates, chart settings and interpretation workflow before this feature is enabled.
++Commercial terms: confirm tax treatment, refunds, renewal terms, usage expiry, third-party invoices and actual launch traffic. Proposed prices are not an approved tariff.
++Launch ownership: client supplies final logo, domain choice, privacy copy and consultant sign-off. Select Firebase region after checking function and database availability.
+ 12. Decision and Next Steps
+-[State the recommended decision and summarize the implementation sequence. Name the first milestone, the validation or dry-run stage, the initial production audience, and the conditions that must be met before broader rollout.]
++Proceed with a five-week, milestone-based PWA build after a vendor spike. Start with a small invited pilot, validate Marathi responses and payment reconciliation, then expand only after cost and error metrics meet the agreed gates.
+ Milestone
+ Deliverable
+ Exit criteria
+-M1
+-[Foundational implementation or dry-run capability]
+-[Measurable evidence that the foundation works safely]
+-M2
+-[Validation, tooling, migration, or audit capability]
+-[Acceptance test or reconstruction criteria]
+-M3
+-[Limited production rollout]
+-[Stability period and severity threshold]
+-M4
+-[Broader customer or workload rollout]
+-[SLOs met, rollback tested, and approvals complete]
++M1 Week 1
++Vendor spike and signed scope
++Language, endpoints and cost assumptions validated
++M2 Weeks 2 to 3
++PWA, identity, chart, chat and Vastu
++Owned data rules and core flows pass tests
++M3 Week 4
++Plans, checkout and usage ledger
++Webhook replay and concurrency tests pass
++M4 Week 5
++Pilot, QA and client handover
++Consultant sign-off; alerts and rollback demonstrated
++13. UI Design and Customer Journeys
++Use a warm ivory background, deep maroon primary actions and restrained saffron accents. A geometric sun mark is a proposed placeholder until the client supplies a logo. Use system Devanagari fonts and generous line height; keep all inputs and touch targets at least 44 pixels high.
++Screen
++Primary action
++Required states
++Home
++Ask AI Guruji or create a birth chart
++Marathi welcome, language control, usage summary
++Birth Chart
++Confirm birth data and generate
++Missing or unknown time, place selection, loading, unavailable
++AI Guruji
++Ask and follow up
++Profile needed, thinking, sourced response, quota exhausted
++Vastu
++Submit directions and room details
++Missing direction, traditional guidance, practical advice
++Prashna
++Confirm question time and place
++Method not enabled, confirmation, calculation failure
++Plans
++Choose a 30-day prepaid plan
++Current plan, pending payment, confirmed payment
++Consultation
++Open WhatsApp
++Consultant profile; separate human consultation fee
++Navigation: Home, Guruji, Birth Chart, Vastu and More. More contains Prashna, Plans and Contact. On desktop, show these sections in a persistent sidebar. A language switch preserves the current flow and local input values; translate app copy with react-i18next and Ant Design component labels with ConfigProvider.
++The prototype is a local interactive design, not a live service. It demonstrates all seven screens in Marathi, Hindi and English. Forms show a safe provider-unavailable state; no astrological results, payments or authentication are simulated as successful.
++Detailed output layout: verified calculation summary, traditional interpretation, practical considerations, limits and consultation action. Display provider and calculation timestamp. Never show fabricated chart geometry or planetary values while loading. Unknown birth time blocks ascendant and time-sensitive conclusions.
++Accessibility: visible focus, semantic labels, readable contrast, status announcements, keyboard access and error text next to the affected field. Respect reduced motion. Test at 360 px, 390 px and desktop widths with long Marathi labels.
++14. Backend Interfaces and Data Model
++Interface
++Purpose
++Controls
++POST /v1/profiles
++Save birth data and confirmed location
++Ownership, consent, timezone validation
++POST /v1/charts
++Create or reuse a verified chart
++Chart allowance; complete cache key
++POST /v1/chat
++Submit question or follow-up
++AI allowance; session ownership; context limit
++POST /v1/vastu
++Basic directional assessment
++Vastu allowance; validated directions
++POST /v1/prashna
++Question-time chart workflow
++Feature flag; consultant-approved method
++POST /v1/checkout
++Create provider payment order
++Server price and plan version
++POST /v1/webhooks/razorpay
++Verify and reconcile payment events
++Raw-body signature; deduplication
++GET /v1/me/usage
++Show current period and allowances
++Authenticated user only
++Firestore collections: users/{uid}, profiles/{id}, conversations/{id}/messages/{id}, results/{id}, entitlements/{uid}, usage/{uid_period}, operations/{uid_requestId}, payments/{paymentId}, webhookEvents/{eventId}, and versioned plans/{planId}. Store ownerUid on owned records; use server timestamps and validate collection-specific rules.
++Birth profile: local date and exact time, selected place label, latitude, longitude, IANA timezone, UTC instant and time certainty. Cache keys include normalized inputs, ayanamsa, chart settings, provider and calculation version. Natal data can be reused; transits and Panchang require date-sensitive keys and expiry.
++AstrologyAPI adapter: geo_details, timezone_with_dst, astro_details, planets, horo_chart/:chart_id, major_vdasha and current_vdasha form the proposed chart bundle. Guruji uses hosted /api/chat with Standard or Advanced level. Basic Vastu uses score, findings and remedies. Confirm exact routes, auth, response shapes and language support in M1.
++Payment flow: create order, complete checkout, show pending, receive signed webhook, verify captured payment and matching amount/currency, then activate a 30-day period atomically. Do not activate from a browser success callback. For MVP, prohibit overlapping purchases; refunds and disputes require recorded entitlement adjustments.
++15. Commercial Model and Sources
++Planning estimates carried forward from the pricing discussion on 17 October 2026. Validate the live vendor catalogue before purchase. AstrologyAPI hosted chat is the AI layer; a separate OpenAI or Gemini invoice is not included. Prices exclude applicable taxes and acquisition costs.
++Plan and price
++30-day allowance
++Contribution at full use
++Free INR 0
++Lifetime: 3 AI questions and 1 chart
++Cost INR 2.16 per activated trial
++Basic INR 49
++20 Standard AI, 1 chart, 1 Vastu
++INR 36.12 or 73.7%
++Standard INR 149
++75 Standard AI, 3 charts, 3 Vastu
++INR 102.80 or 69.0%
++Premium INR 349
++150 Advanced AI; 5 charts; 5 Vastu
++INR 211.48 or 60.6%
++Assumptions: chart bundle INR 0.66; Standard chat INR 0.50 per question; Advanced INR 0.80; basic Vastu bundle INR 0.75; payment reserve 3%. Each follow-up counts. Cached viewing is free; changed inputs count as a new calculation. No rollover. Contribution excludes fixed maintenance and build recovery.
++Monthly scenario: 50 Basic, 35 Standard, 15 Premium and 100 new Free users. Revenue INR 12,900; API budget INR 4,200–4,700; Firebase INR 0–500; domain annualized INR 100–150; maintenance INR 1,500–2,500; payment reserve INR 387. Operating surplus INR 4,663–6,713 before taxes, marketing and development recovery. This is not guaranteed profit.
++Developer proposal: INR 45,000 one time, split INR 18,000 / 18,000 / 9,000, with 30 days of defect fixes. Then INR 1,500–2,500 monthly for agreed support hours; new features quoted separately. Vendor bills belong to the client. A sub-INR 10,000 budget requires a smaller unpaid pilot.
++Firebase uses Blaze billing for backend functions. Small-pilot estimates: Firestore INR 0–150; Hosting INR 0–100; Functions, secrets and logs INR 0–250. Google sign-in avoids SMS charges. Domain registration is separate and the proposed domain has not been checked for availability.
++Sources: astrologyapi.com/credits-calculator; astrologyapi.com/developers/v1/chat-api; astrologyapi.com/developers/v1/guides/pay-as-you-go; firebase.google.com/pricing; razorpay.com/pricing. Hosted chat rates may be introductory. Marathi quality, Prashna compatibility and any additional endpoint costs remain launch gates.
