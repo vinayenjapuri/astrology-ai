@@ -11,7 +11,7 @@ The proposed production stack is React, TypeScript, Vite, Ant Design, react-i18n
 
 ## Verification
 
-Browser checks passed for seven screens, three languages and five widths (360, 390, 768, 1024, 1440). Checks covered document overflow, runtime errors, language changes preserving forms, missing birth time, safe text rendering and the plan selection modal. No external contact links were clicked.
+Browser checks passed for eight screens, three languages and five widths (360, 390, 768, 1024, 1440). Checks covered document overflow, runtime errors, language changes preserving forms, missing birth time, safe text rendering and the plan selection modal. No external contact links were clicked.
 
 The 10-page DOCX was rendered and visually reviewed. Template package parts were preserved except document content, the architecture image, the organization footer and the example footnote. The original reference file was not modified. QA records and generation scripts are included for reproducibility.
 
@@ -22,3 +22,5 @@ Validate AstrologyAPI Marathi, calculation provenance, Vastu response contracts 
 ## Prototype V2
 
 See [PROTOTYPE-V2.md](PROTOTYPE-V2.md) for the consolidated design system, interaction changes, React/Ant Design component mapping and production-only work.
+
+The latest prototype uses green and gold, a reference-inspired hero, service illustrations, a Testimonials view with labelled fictional samples, and expanded service/consultant guidance. See `PROTOTYPE-V2.md` for current CSS tokens and `assets/README.md` for artwork provenance and prompts.
