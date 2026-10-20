@@ -36,3 +36,5 @@ Prompt: Edit the supplied portrait mobile hero into a text-free background. Remo
 `hero-gold-tablet.png/.webp` and `hero-gold-desktop.png/.webp` are text-free edits of the supplied PM-2 and PM-1 references respectively. Lossless WebP versions are embedded in the standalone prototype.
 
 Prompt used for each: Edit this reference into a text-free website background (tablet 4:3; desktop 16:9). Remove every heading, letter, label, button and outline and reconstruct uninterrupted sky. Remove ivory outer frame and rounded corners, extending artwork edge to edge. Preserve the soft antique gold palette, celestial wheel upper right, temples lower right, river and hills below, and calm pale golden negative space on the left for native HTML copy. Preserve composition and detail; no added text, UI or white veil.
+
+October 20 revision: `hero-gold-{desktop,tablet,mobile}.webp` are optimized copies of the three user-supplied ChatGPT background images. `reference-*.webp` are literal icon crops from the user-supplied WhatsApp Image 2026-10-19 at 15.23.08.jpeg, preserving the green backing. No new icon artwork was generated. The current HTML embeds these assets.

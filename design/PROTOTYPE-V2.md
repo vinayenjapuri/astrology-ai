@@ -124,3 +124,19 @@ The hero uses 100dvh (100vh fallback), without subtracting the fixed bottom navi
 - Desktop uses the sidebar brand without duplicate mobile header branding. The initial sidebar overlays the artwork with a translucent surface.
 - Plans navigation is now Pricing, with corresponding Marathi/Hindi labels; prices and allowances are unchanged.
 - Verified all 120 screen/language/width combinations and targeted image-source, scroll-state, branding and assistant-visibility checks.
+
+## October 20 approved visual revision
+
+The supplied landscape, tablet and portrait artwork now replaces the previous hero assets. All surfaces use forest green; primary text uses antique gold (#E2CF92), with muted gold (#BFAF7D) for supporting copy. Ivory surfaces are removed. Home headings use a serif-oriented font stack and larger, more deliberate spacing. Responsive Home service cards place the title and description on the left and reference artwork on the right; clicking navigates directly, without expansion.
+
+The three existing services retain their routes and behavior. Six icon crops were extracted from the supplied WhatsApp screenshot; the three applicable icons are embedded in the prototype. These are screenshot-resolution crops with their original green backing, not transparent production icon masters. All three hero images and the used icons are embedded so both HTML entry points work independently.
+
+Verification: 8 screens × 3 languages × 5 viewport widths (360, 390, 768, 1024, 1440), runtime errors, horizontal overflow and direct Home service navigation. Responsive screenshots are in `qa/reference-home-*.png`.
+
+## Hero viewport fit correction
+
+Mobile hero spacing now responds to viewport height rather than viewport width. Short screens receive compact typography and spacing; the original image proportions remain preserved with cover sizing. A subtle dark overlay supports text contrast. Tablet no longer enforces a 680px minimum when the viewport is shorter. `qa-hero.cjs` checks both action buttons against the fixed navigation (or viewport edge) in all three languages at ten viewport sizes from 320×568 to 1920×1080. All 30 combinations passed, with screenshots in `qa/hero-*.png`.
+
+## Shared landing layout
+
+Home now retains the mobile composition at every width: brand/language header, full-height artwork anchored to the right, left-aligned copy and compact actions, and four-item bottom navigation. Wider viewports add room to the right without switching to desktop top navigation or a narrow tablet text column. The existing responsive background sources remain in use. Hero action visibility passed all 30 viewport/language combinations after this change.
